@@ -175,7 +175,7 @@ body.light .profile-setup{background:rgba(15,20,28,.35)}body.light .setup-card{b
   .mobile-menu-toggle{display:none}
   .mobile-bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;padding:6px 4px calc(6px + env(safe-area-inset-bottom));background:#101318;border-top:1px solid #303640;box-shadow:0 -5px 20px rgba(0,0,0,.18)}
   .mobile-bottom-nav button{min-width:0;min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:4px 2px;border:0;border-radius:9px;background:transparent;color:#98a4b7;font:inherit;cursor:pointer}
-  .mobile-bottom-nav button .mobile-nav-icon{font-size:18px;line-height:1}
+  .mobile-bottom-nav button .mobile-nav-icon{font-size:20px;line-height:1}
   .mobile-bottom-nav button .mobile-nav-label{font-size:9px;line-height:1.1;text-align:center;white-space:nowrap}
   .mobile-bottom-nav button.active{background:#17382d;color:#45dfa2}
   .mobile-more-panel{display:none;position:fixed;left:10px;right:10px;bottom:calc(66px + env(safe-area-inset-bottom));z-index:39;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:12px;border:1px solid #343b46;border-radius:14px;background:#12161c;box-shadow:0 12px 38px rgba(0,0,0,.35);max-height:65vh;overflow:auto}
@@ -306,11 +306,11 @@ body.light .sidebar{box-shadow:0 5px 18px rgba(31,45,61,.08)}
       <button type="button" class="mobile-nav-item" data-page="dashboard"><span class="mobile-nav-icon">▦</span><span class="mobile-nav-label">Dashboard</span></button>
       <button type="button" class="mobile-nav-item" data-page="practice"><span class="mobile-nav-icon">✎</span><span class="mobile-nav-label">Practice</span></button>
       <button type="button" class="mobile-nav-item" data-page="timer"><span class="mobile-nav-icon">◴</span><span class="mobile-nav-label">Study</span></button>
-      <button type="button" class="mobile-nav-item" data-page="mock"><span class="mobile-nav-icon">◎</span><span class="mobile-nav-label">Mock Tests</span></button>
+      <button type="button" class="mobile-nav-item" data-page="syllabus"><span class="mobile-nav-icon">▣</span><span class="mobile-nav-label">Syllabus</span></button>
       <button type="button" id="mobileMoreButton" class="mobile-nav-item" aria-expanded="false" aria-controls="mobileMorePanel"><span class="mobile-nav-icon">•••</span><span class="mobile-nav-label">More</span></button>
     </nav>
     <div class="mobile-more-panel" id="mobileMorePanel" aria-label="More sections">
-      <button type="button" data-page="syllabus"><span>▣</span>Syllabus</button>
+      <button type="button" data-page="mock"><span>◎</span>Mock Tests</button>
       <button type="button" data-page="leaderboard"><span>♜</span>Leaderboard</button>
       <button type="button" data-page="calendar"><span>▦</span>Study Calendar</button>
       <button type="button" data-page="reports"><span>▥</span>Reports</button>
@@ -1109,10 +1109,10 @@ function saveProfileSetup(){
 function render(page="dashboard"){
   activePage=page;
   document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
-  const primaryPages=["dashboard","practice","timer","mock"];
+  const primaryPages=["dashboard","practice","timer","syllabus"];
   document.querySelectorAll(".mobile-nav-item[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page||(page==="mockRun"&&b.dataset.page==="mock")));
   const moreButton=document.querySelector("#mobileMoreButton"),morePanel=document.querySelector("#mobileMorePanel");
-  if(moreButton){moreButton.classList.toggle("active",!primaryPages.includes(page)&&page!=="mockRun");moreButton.setAttribute("aria-expanded","false")}
+  if(moreButton){moreButton.classList.toggle("active",!primaryPages.includes(page));moreButton.setAttribute("aria-expanded","false")}
   if(morePanel)morePanel.classList.remove("open");
   const pages={dashboard,syllabus,practice,timer:timerPage,leaderboard,calendar,reports,mock,mockRun:()=>mockTestPage(mockState?.id||"full"),community,aboutCreator};
   document.querySelector("#main").innerHTML=pages[page]();
