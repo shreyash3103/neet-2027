@@ -162,6 +162,11 @@ body.light .profile-setup{background:rgba(15,20,28,.35)}body.light .setup-card{b
 <style>
 /* Phone layout: compact left navigation rail and single-column study content. */
 .mobile-menu-toggle{display:none}
+/* Keep mock-test choices compact, high-contrast, and easy to select. */
+.options label{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:11px 14px;background:#202630;border:1px solid #46515f;border-radius:10px;color:#f5f7fb}
+.options label:hover,.options label.selected{background:#25334a;border-color:#5b8def}
+.options label span{order:1;flex:1;min-width:0;color:#f5f7fb;line-height:1.45;overflow-wrap:anywhere}
+.options input[type="radio"]{order:2;display:block;flex:0 0 18px;width:18px!important;height:18px!important;margin:0 0 0 10px!important;padding:0;accent-color:#5b8def;cursor:pointer}
 @media(max-width:600px){
   html,body{width:100%;overflow-x:hidden}
   .app{display:block;min-height:100vh}
