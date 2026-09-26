@@ -160,8 +160,9 @@ body.light .profile-setup{background:rgba(15,20,28,.35)}body.light .setup-card{b
 </style>
 
 <style>
-/* Phone layout: compact left navigation rail and single-column study content. */
+/* Phone layout: compact fixed bottom navigation and single-column study content. */
 .mobile-menu-toggle{display:none}
+.mobile-bottom-nav,.mobile-more-panel{display:none}
 /* Keep mock-test choices compact, high-contrast, and easy to select. */
 .options label{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:11px 14px;background:#202630;border:1px solid #46515f;border-radius:10px;color:#f5f7fb}
 .options label:hover,.options label.selected{background:#25334a;border-color:#5b8def}
@@ -170,20 +171,24 @@ body.light .profile-setup{background:rgba(15,20,28,.35)}body.light .setup-card{b
 @media(max-width:600px){
   html,body{width:100%;overflow-x:hidden}
   .app{display:block;min-height:100vh}
-  .sidebar{display:flex;flex-direction:column;align-items:stretch;gap:4px;position:fixed;left:0;top:0;bottom:0;width:64px;padding:8px 4px calc(8px + env(safe-area-inset-bottom));overflow-x:hidden;overflow-y:auto;z-index:20;border-right:1px solid #20242a;box-shadow:3px 0 16px rgba(0,0,0,.12)}
-  .brand-wrap{display:flex;justify-content:center;min-width:0;margin:0 0 2px;padding:0}
-  .brand-wrap>div:not(.brand-logo){display:none}
-  .brand-logo{width:28px;height:28px;flex:0 0 28px;border-radius:8px;font-size:14px}
+  .sidebar{display:none}
   .mobile-menu-toggle{display:none}
-  .sidebar nav,.sidebar.mobile-menu-open nav{display:flex;flex-direction:column;align-items:stretch;gap:4px;width:100%;margin:0;padding:0;border:0;overflow:visible}
-  .nav-item{width:100%;min-width:0;min-height:41px;flex:0 0 auto;display:flex;flex-direction:column;justify-content:center;gap:2px;margin:0;padding:4px 1px;border-radius:7px;font-size:7px;line-height:1;text-align:center;white-space:normal;overflow-wrap:anywhere}
-  .nav-item span{display:block;width:auto;flex:0 0 auto;font-size:14px;line-height:1}
-  .sidebar-profile,.google-auth-status{display:none}
-  #googleAuthButton{display:block;width:100%;margin:3px 0 0;padding:6px 1px;font-size:7px;line-height:1.1;white-space:normal;overflow-wrap:anywhere}
-  .theme-toggle{display:block;margin:auto 0 0;padding:7px 0 0;border-top:1px solid #252a31}
-  .theme-toggle button{width:100%;padding:5px 1px;flex-direction:column;gap:2px;font-size:7px;line-height:1}
-  .privacy-link{display:block;margin:2px 0 0;padding:2px 0;font-size:7px;line-height:1.1;overflow-wrap:anywhere}
-  main{width:calc(100% - 64px);min-width:0;max-width:none;margin-left:64px;padding:18px 10px calc(24px + env(safe-area-inset-bottom))}
+  .mobile-bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;padding:6px 4px calc(6px + env(safe-area-inset-bottom));background:#101318;border-top:1px solid #303640;box-shadow:0 -5px 20px rgba(0,0,0,.18)}
+  .mobile-bottom-nav button{min-width:0;min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:4px 2px;border:0;border-radius:9px;background:transparent;color:#98a4b7;font:inherit;cursor:pointer}
+  .mobile-bottom-nav button .mobile-nav-icon{font-size:18px;line-height:1}
+  .mobile-bottom-nav button .mobile-nav-label{font-size:9px;line-height:1.1;text-align:center;white-space:nowrap}
+  .mobile-bottom-nav button.active{background:#17382d;color:#45dfa2}
+  .mobile-more-panel{display:none;position:fixed;left:10px;right:10px;bottom:calc(66px + env(safe-area-inset-bottom));z-index:39;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:12px;border:1px solid #343b46;border-radius:14px;background:#12161c;box-shadow:0 12px 38px rgba(0,0,0,.35);max-height:65vh;overflow:auto}
+  .mobile-more-panel.open{display:grid}
+  .mobile-more-panel button,.mobile-more-panel a{min-height:42px;display:flex;align-items:center;gap:8px;padding:9px 10px;border:1px solid #303742;border-radius:9px;background:#191e25;color:#e5eaf2;text-decoration:none;font:inherit;font-size:12px;text-align:left;cursor:pointer}
+  .mobile-more-panel button span,.mobile-more-panel a span{width:18px;text-align:center;color:#9db7e8;font-size:15px}
+  #mobileGoogleAuthButton{grid-column:1/-1;justify-content:center;border-color:#5b8def}
+  body.light .mobile-bottom-nav{background:#fff;border-color:#dfe4ea;box-shadow:0 -5px 20px rgba(31,45,61,.1)}
+  body.light .mobile-bottom-nav button{color:#687589}
+  body.light .mobile-bottom-nav button.active{background:#e5f7ef;color:#11845a}
+  body.light .mobile-more-panel{background:#fff;border-color:#dfe4ea;box-shadow:0 12px 38px rgba(31,45,61,.2)}
+  body.light .mobile-more-panel button,body.light .mobile-more-panel a{background:#f7f8fa;border-color:#dfe4ea;color:#17202b}
+  main{width:100%;min-width:0;max-width:none;margin-left:0;padding:20px 14px calc(88px + env(safe-area-inset-bottom))}
   h1{font-size:24px;line-height:1.2}
   h2{font-size:19px;margin:22px 0 12px}
   .subtitle{font-size:14px;line-height:1.5;margin-bottom:18px}
@@ -243,8 +248,7 @@ body.light .profile-setup{background:rgba(15,20,28,.35)}body.light .setup-card{b
   .setup-card{width:min(440px,calc(100vw - 24px));padding:22px}
 }
 @media(max-width:380px){
-  .sidebar{width:58px;padding-left:3px;padding-right:3px}
-  main{width:calc(100% - 58px);margin-left:58px;padding-left:9px;padding-right:9px}
+  main{padding-left:10px;padding-right:10px}
   .nav-item{font-size:6.5px}
   .card{padding:12px}
   .streak-stats span{font-size:9px}
@@ -298,6 +302,24 @@ body.light .sidebar{box-shadow:0 5px 18px rgba(31,45,61,.08)}
     </aside>
 
     <main id="main"></main>
+    <nav class="mobile-bottom-nav" aria-label="Primary navigation">
+      <button type="button" class="mobile-nav-item" data-page="dashboard"><span class="mobile-nav-icon">▦</span><span class="mobile-nav-label">Dashboard</span></button>
+      <button type="button" class="mobile-nav-item" data-page="practice"><span class="mobile-nav-icon">✎</span><span class="mobile-nav-label">Practice</span></button>
+      <button type="button" class="mobile-nav-item" data-page="timer"><span class="mobile-nav-icon">◴</span><span class="mobile-nav-label">Study</span></button>
+      <button type="button" class="mobile-nav-item" data-page="mock"><span class="mobile-nav-icon">◎</span><span class="mobile-nav-label">Mock Tests</span></button>
+      <button type="button" id="mobileMoreButton" class="mobile-nav-item" aria-expanded="false" aria-controls="mobileMorePanel"><span class="mobile-nav-icon">•••</span><span class="mobile-nav-label">More</span></button>
+    </nav>
+    <div class="mobile-more-panel" id="mobileMorePanel" aria-label="More sections">
+      <button type="button" data-page="syllabus"><span>▣</span>Syllabus</button>
+      <button type="button" data-page="leaderboard"><span>♜</span>Leaderboard</button>
+      <button type="button" data-page="calendar"><span>▦</span>Study Calendar</button>
+      <button type="button" data-page="reports"><span>▥</span>Reports</button>
+      <button type="button" data-page="community"><span>♧</span>Community</button>
+      <button type="button" data-page="aboutCreator"><span>♡</span>About Creator</button>
+      <button type="button" id="mobileGoogleAuthButton"><span>◎</span>Continue with Google</button>
+      <button type="button" id="mobileThemeToggle"><span>☀</span><span id="mobileThemeLabel">Light mode</span></button>
+      <a href="privacy.html"><span>♡</span>Privacy Policy</a>
+    </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
@@ -1044,6 +1066,7 @@ function applyTheme(theme){
   const btn=document.querySelector("#themeToggle");
   if(label) label.textContent=theme==="light"?"Dark mode":"Light mode";
   if(btn) btn.firstChild.textContent=theme==="light"?"🌙 ":"☀️ ";
+  const mobileLabel=document.querySelector("#mobileThemeLabel");if(mobileLabel)mobileLabel.textContent=theme==="light"?"Dark mode":"Light mode";
 }
 function bindTheme(){
   const saved=localStorage.getItem("neetTheme")||"dark";
@@ -1053,6 +1076,8 @@ function bindTheme(){
     const next=document.body.classList.contains("light")?"dark":"light";
     applyTheme(next);
   };
+  const mobileBtn=document.querySelector("#mobileThemeToggle");
+  if(mobileBtn)mobileBtn.onclick=()=>applyTheme(document.body.classList.contains("light")?"dark":"light");
 }
 
 
@@ -1084,6 +1109,11 @@ function saveProfileSetup(){
 function render(page="dashboard"){
   activePage=page;
   document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+  const primaryPages=["dashboard","practice","timer","mock"];
+  document.querySelectorAll(".mobile-nav-item[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page||(page==="mockRun"&&b.dataset.page==="mock")));
+  const moreButton=document.querySelector("#mobileMoreButton"),morePanel=document.querySelector("#mobileMorePanel");
+  if(moreButton){moreButton.classList.toggle("active",!primaryPages.includes(page)&&page!=="mockRun");moreButton.setAttribute("aria-expanded","false")}
+  if(morePanel)morePanel.classList.remove("open");
   const pages={dashboard,syllabus,practice,timer:timerPage,leaderboard,calendar,reports,mock,mockRun:()=>mockTestPage(mockState?.id||"full"),community,aboutCreator};
   document.querySelector("#main").innerHTML=pages[page]();
   bind(page);
@@ -1100,13 +1130,15 @@ function bind(page){
     mobileMenuButton.setAttribute("aria-label",open?"Close menu":"Open menu");
     mobileMenuButton.textContent=open?"×":"☰";
   };
+  const mobileMoreButton=document.querySelector("#mobileMoreButton"),mobileMorePanel=document.querySelector("#mobileMorePanel");
+  if(mobileMoreButton&&mobileMorePanel)mobileMoreButton.onclick=()=>{const open=mobileMorePanel.classList.toggle("open");mobileMoreButton.setAttribute("aria-expanded",String(open))};
   if(page==="leaderboard"){
     clearInterval(leaderboardPoll);loadLeaderboard();
     leaderboardPoll=setInterval(loadLeaderboard,15000);
     const refresh=document.querySelector("#leaderboardRefresh");if(refresh)refresh.onclick=loadLeaderboard;
     const retry=document.querySelector("#leaderboardRetry");if(retry)retry.onclick=loadLeaderboard;
   }else clearInterval(leaderboardPoll);
-  document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>{document.querySelector(".sidebar")?.classList.remove("mobile-menu-open");const menuButton=document.querySelector("#mobileMenuToggle");if(menuButton){menuButton.setAttribute("aria-expanded","false");menuButton.setAttribute("aria-label","Open menu");menuButton.textContent="☰"}render(b.dataset.page)});
+  document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>{document.querySelector(".sidebar")?.classList.remove("mobile-menu-open");const menuButton=document.querySelector("#mobileMenuToggle");if(menuButton){menuButton.setAttribute("aria-expanded","false");menuButton.setAttribute("aria-label","Open menu");menuButton.textContent="☰"}document.querySelector("#mobileMorePanel")?.classList.remove("open");render(b.dataset.page)});
   document.querySelectorAll("[data-subject]").forEach(b=>b.onclick=()=>{currentSubject=b.dataset.subject;render("syllabus")});
   document.querySelectorAll("[data-check]").forEach(c=>c.onchange=()=>{checked[c.dataset.check]=c.checked;localStorage.setItem("neetChecked",JSON.stringify(checked));render("syllabus")});
   if(page==="practice"){
@@ -1187,7 +1219,9 @@ if(saveProfileBtn) saveProfileBtn.onclick=saveProfileSetup;
   };
   window.updateGoogleLoginDisplay=(user)=>{
     window.neetGoogleUser=user||null;
+    const mobileButton=document.querySelector("#mobileGoogleAuthButton");
     if(button)button.textContent=user?"Sign out":"Continue with Google";
+    if(mobileButton)mobileButton.innerHTML=`<span>◎</span>${user?"Sign out":"Continue with Google"}`;
     const accountLabel=document.querySelector("#sideAccountLabel");
     if(user){
       const displayName=(user.user_metadata?.full_name||user.user_metadata?.name||user.email||"Student").trim();
@@ -1202,19 +1236,22 @@ if(saveProfileBtn) saveProfileBtn.onclick=saveProfileSetup;
       if(status)status.textContent="Sign in with your Google account.";
     }
   };
-  if(button)button.onclick=async()=>{
-    button.disabled=true;
+  const handleGoogleAuth=async()=>{
+    const authButtons=[button,document.querySelector("#mobileGoogleAuthButton")].filter(Boolean);
+    authButtons.forEach(item=>item.disabled=true);
     if(window.neetGoogleUser){
       if(status)status.textContent="Signing out…";
       const {error}=await authClient.auth.signOut();
-      button.disabled=false;
+      authButtons.forEach(item=>item.disabled=false);
       if(error&&status)status.textContent="Sign out failed. Please try again.";
       return;
     }
     if(status)status.textContent="Opening Google sign-in…";
     const {error}=await authClient.auth.signInWithOAuth({provider:"google",options:{redirectTo:"https://shreyash3103.github.io/neet-2027/"}});
-    if(error){button.disabled=false;if(status)status.textContent="Sign-in could not start. Check the Google and Supabase settings, then try again."}
+    if(error){authButtons.forEach(item=>item.disabled=false);if(status)status.textContent="Sign-in could not start. Check the Google and Supabase settings, then try again."}
   };
+  if(button)button.onclick=handleGoogleAuth;
+  const mobileAuthButton=document.querySelector("#mobileGoogleAuthButton");if(mobileAuthButton)mobileAuthButton.onclick=handleGoogleAuth;
   authClient.auth.onAuthStateChange((_event,session)=>{const user=session?.user||null;window.updateGoogleLoginDisplay(user);setTimeout(()=>{if(activePage==="leaderboard")render("leaderboard");syncLocalStudyHours(user)},0)});
   authClient.auth.getSession().then(({data,error})=>{
     if(error){if(status)status.textContent="Could not check your sign-in status. Refresh and try again.";return}
