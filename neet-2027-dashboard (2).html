@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEET 2027 — Study Dashboard</title>
+  <style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#080a0c;color:#f4f6fa}body{font-size:16px}.app{display:flex;min-height:100vh}.sidebar{width:264px;flex:0 0 264px;border-right:1px solid #20242a;background:#0d0f12;padding:28px 16px}.brand{font-weight:800;font-size:17px;letter-spacing:.1px;margin:6px 10px 28px}.nav-item{width:100%;border:0;background:transparent;color:#9ca8bd;text-align:left;padding:14px 14px;border-radius:10px;margin:2px 0;font-size:16px;cursor:pointer;display:flex;align-items:center;gap:16px}.nav-item span{width:22px;text-align:center;font-size:20px;color:#9aa3b3}.nav-item:hover{background:#14181d;color:#fff}.nav-item.active{background:#0d3027;color:#35e49d}.nav-item.active span{color:#35e49d}main{flex:1;max-width:980px;padding:40px 28px 80px}h1{font-size:27px;line-height:1.15;margin:0 0 7px}h2{font-size:21px;margin:28px 0 14px}.subtitle{color:#8e9ab0;margin-bottom:28px}.card{background:#12161a;border:1px solid #272c33;border-radius:11px;padding:20px}.muted{color:#8e9ab0}.tag{display:inline-block;background:#22272e;border-radius:6px;padding:5px 8px;font-size:12px;color:#91a0b7}.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;margin-top:16px}.countdown strong{font-size:28px;display:block}.countdown small{color:#9ba6b9}.progress-row{display:flex;align-items:center;gap:18px;margin:28px 0}.progress{height:10px;flex:1;border:1px solid #242931;border-radius:99px;overflow:hidden;background:#0d0f12}.progress>i{display:block;height:100%;background:#5b8def;width:0}.stats-card{display:flex;align-items:center;gap:34px}.donut{width:120px;height:120px;border-radius:50%;background:conic-gradient(#5b8def 0deg,#23272e 0deg);display:grid;place-items:center;flex:none}.donut:after{content:"";width:84px;height:84px;background:#12161a;border-radius:50%;grid-area:1/1}.donut-label{grid-area:1/1;z-index:1;text-align:center;font-weight:800}.donut-label small{display:block;font-weight:400;color:#8e9ab0;font-size:10px}.legend{flex:1}.legend-row{display:flex;align-items:center;gap:10px;margin:13px 0}.dot{width:12px;height:12px;border-radius:50%}.legend-row .hours{margin-left:auto;color:#a7b0c0}.subject-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.subject{padding:16px 12px;border:1px solid #292e35;border-radius:12px;background:#12161a}.subject.selected{border-color:#5b8def;box-shadow:0 0 0 1px #5b8def inset}.subject b{display:block;margin-bottom:7px}.subject small{color:#8e9ab0}.list{display:flex;flex-direction:column;gap:12px}.chapter{display:flex;align-items:center;gap:18px;border:1px solid #292e35;background:#12161a;border-radius:12px;padding:22px;cursor:pointer}.chapter:hover{border-color:#3c4653}.chapter input{width:22px;height:22px}.chapter .arrow{margin-left:auto;color:#8e9ab0}.notice{padding:16px 18px;background:#14181d;border:1px solid #292e35;border-radius:10px;color:#9eabc0;line-height:1.6}.timer-card{max-width:950px}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:34px}.tab{background:transparent;border:1px solid #292e35;color:#fff;border-radius:10px;padding:12px;cursor:pointer}.tab.active{border-color:#5b8def;box-shadow:0 0 0 1px #5b8def inset}.clock{text-align:center;font-size:54px;font-weight:800;letter-spacing:-2px;margin:8px 0 24px}.actions{display:grid;grid-template-columns:1fr 1fr 108px;gap:12px}.btn{border:1px solid #2a3038;background:#111419;color:#e7ebf2;border-radius:10px;padding:14px;font-size:16px;font-weight:700;cursor:pointer}.btn.primary{background:#5b8def;border-color:#5b8def}.btn.green{background:#2a6048;border-color:#2a6048}.btn:hover{filter:brightness(1.08)}.pills{display:flex;gap:10px;margin:18px 0 28px}.pill{padding:10px 16px;border-radius:999px;border:1px solid #292e35;background:transparent;color:#8e9ab0;cursor:pointer}.pill.active{background:#f1f3f6;color:#171a1e}.empty{text-align:center;color:#8e9ab0;padding:35px 0}.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.feature{min-height:120px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.day{padding:14px 10px;min-height:70px;border:1px solid #292e35;border-radius:8px;background:#111419}.day strong{display:block}.day.today{border-color:#35e49d}.day.done{background:#10271f}.table{width:100%;border-collapse:collapse}.table th,.table td{text-align:left;padding:14px;border-bottom:1px solid #292e35;color:#b5bfce}.table th{color:#fff}.hero-note{color:#35e49d;font-size:13px;margin-bottom:10px}@media(max-width:800px){.sidebar{width:210px;flex-basis:210px}.subject-grid{grid-template-columns:repeat(2,1fr)}.countdown{gap:8px}.actions{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.app{display:block}.sidebar{width:100%;padding:12px;position:sticky;top:0;z-index:5}.brand{margin:4px 10px 10px}.sidebar nav{display:flex;overflow:auto;gap:4px}.nav-item{min-width:max-content;padding:10px}.nav-item span{display:none}main{padding:25px 16px}}
+
+
+.calendar-wrap{display:grid;grid-template-columns:1fr;gap:18px}
+.calendar-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.calendar-head h2{margin:0;font-size:20px}
+.month-nav{display:flex;gap:8px}
+.month-nav button{border:1px solid #292e35;background:#111419;color:#e7ebf2;border-radius:8px;padding:8px 12px;cursor:pointer}
+.month-nav button:hover{background:#181d23}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.weekday{text-align:center;color:#7f8b9f;font-size:12px;padding:5px}
+.calendar-date{min-height:105px;padding:10px;border:1px solid #292e35;border-radius:9px;background:#111419;cursor:pointer;transition:.15s;position:relative}
+.calendar-date:hover{border-color:#536174;transform:translateY(-1px)}
+.calendar-date.muted-date{opacity:.35}
+.calendar-date.today{border-color:#35e49d;box-shadow:0 0 0 1px #35e49d inset}
+.calendar-date.selected{border-color:#5b8def;box-shadow:0 0 0 1px #5b8def inset}
+.date-number{font-weight:700;font-size:14px}
+.target-count{position:absolute;right:9px;top:9px;color:#35e49d;font-size:11px}
+.mini-target{font-size:11px;color:#aab4c4;margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.calendar-editor{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.target-panel h3{margin:0 0 5px}
+.target-date-label{color:#8e9ab0;margin-bottom:16px}
+.target-input{display:flex;gap:8px;margin-bottom:14px}
+.target-input input{flex:1;min-width:0;background:#0d1014;border:1px solid #2b3139;color:#fff;border-radius:8px;padding:12px;outline:none}
+.target-input input:focus{border-color:#5b8def}
+.target-input button{border:0;background:#5b8def;color:white;border-radius:8px;padding:0 16px;font-weight:700;cursor:pointer}
+.target-list{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow:auto}
+.target-item{display:flex;align-items:center;gap:10px;padding:10px;background:#0e1115;border:1px solid #272d34;border-radius:8px}
+.target-item input{width:17px;height:17px}
+.target-item.done span{text-decoration:line-through;color:#6f7989}
+.target-item span{flex:1}
+.target-delete{border:0;background:transparent;color:#7f8b9f;cursor:pointer;font-size:16px}
+.target-delete:hover{color:#ff7d7d}
+.no-targets{color:#707b8d;padding:20px 0;text-align:center}
+@media(max-width:800px){.calendar-editor{grid-template-columns:1fr}.calendar-date{min-height:85px}}
+
+
+/* Light / dark theme */
+body.light{background:#f5f7fa;color:#17202b}
+body.light .sidebar{background:#ffffff;border-color:#dfe4ea}
+body.light .nav-item{color:#647084}
+body.light .nav-item:hover{background:#f0f3f7;color:#17202b}
+body.light .nav-item.active{background:#e5f7ef;color:#11845a}
+body.light .nav-item.active span{color:#11845a}
+body.light .card,
+body.light .subject,
+body.light .chapter,
+body.light .calendar-date,
+body.light .day,
+body.light .feature,
+body.light .btn,
+body.light .month-nav button,
+body.light .tab,
+body.light .target-item{background:#ffffff;border-color:#dfe4ea;color:#17202b}
+body.light .muted,
+body.light .subtitle,
+body.light .countdown small,
+body.light .subject small,
+body.light .legend-row .hours,
+body.light .target-date-label,
+body.light .weekday,
+body.light .mini-target,
+body.light .no-targets,
+body.light .empty{color:#687589}
+body.light .notice{background:#f0f3f7;border-color:#dfe4ea;color:#5f6c7e}
+body.light .tag{background:#e8edf2;color:#657185}
+body.light .progress{background:#e5e8ec;border-color:#d7dce2}
+body.light .donut:after{background:#ffffff}
+body.light .donut{background:conic-gradient(#5b8def 0deg,#dfe4ea 0deg)}
+body.light .pill{border-color:#dfe4ea;color:#657185}
+body.light .pill.active{background:#17202b;color:#ffffff}
+body.light .target-input input{background:#ffffff;border-color:#d5dbe3;color:#17202b}
+body.light .target-input input::placeholder{color:#8994a4}
+body.light .target-item.done span{color:#9aa4b2}
+body.light .calendar-date:hover,
+body.light .day:hover{border-color:#aeb8c6}
+body.light .calendar-date.today{border-color:#159d6a}
+body.light .calendar-date.selected{border-color:#4f82df}
+body.light .btn{color:#17202b}
+body.light .btn.primary{color:#fff;background:#5b8def;border-color:#5b8def}
+body.light .btn.green{color:#fff;background:#2a6048;border-color:#2a6048}
+body.light .hero-note{color:#11845a}
+.theme-toggle{margin:22px 4px 0;padding-top:18px;border-top:1px solid #22272e}
+.theme-toggle button{width:100%;border:1px solid #292e35;background:#111419;color:#c5cedb;border-radius:9px;padding:11px 12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;font-size:14px;font-weight:700}
+.theme-toggle button:hover{background:#181d23}
+body.light .theme-toggle{border-color:#dfe4ea}
+body.light .theme-toggle button{background:#fff;border-color:#dfe4ea;color:#465366}
+
+</style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">NEET 2027</div>
+      <nav>
+        <button class="nav-item active" data-page="dashboard"><span>▦</span>Dashboard</button>
+        <button class="nav-item" data-page="syllabus"><span>▣</span>Syllabus</button>
+        <button class="nav-item" data-page="timer"><span>◴</span>Study Timer</button>
+        <button class="nav-item" data-page="leaderboard"><span>♜</span>Leaderboard</button>
+        <button class="nav-item" data-page="calendar"><span>▦</span>Study Calendar</button>
+        <button class="nav-item" data-page="reports"><span>▥</span>Reports</button>
+        <button class="nav-item" data-page="mock"><span>◎</span>Mock Tests</button>
+        <button class="nav-item" data-page="community"><span>♧</span>Community</button>
+      </nav>
+      <div class="theme-toggle">
+        <button id="themeToggle" type="button">☀️ <span id="themeLabel">Light mode</span></button>
+      </div>
+    </aside>
+
+    <main id="main"></main>
+  </div>
+  <script>
+const subjects = {
+  Physics:["Units & Measurement","Kinematics","Laws of Motion","Work, Energy & Power","Rotational Motion","Gravitation","Properties of Solids & Fluids","Thermodynamics","Kinetic Theory","Oscillations & Waves","Electrostatics","Current Electricity","Magnetic Effects of Current","Electromagnetic Induction","Optics","Dual Nature of Matter","Atoms & Nuclei","Electronic Devices"],
+  Chemistry:["Some Basic Concepts of Chemistry","Structure of Atom","Classification of Elements","Chemical Bonding","Thermodynamics","Equilibrium","Redox Reactions","Solutions","Electrochemistry","Chemical Kinetics","Surface Chemistry","Coordination Compounds","Organic Chemistry Basics","Hydrocarbons","Haloalkanes & Haloarenes","Alcohols, Phenols & Ethers","Aldehydes & Ketones","Amines","Biomolecules"],
+  Botany:["The Living World","Biological Classification","Plant Kingdom","Morphology of Flowering Plants","Anatomy of Flowering Plants","Cell: Structure & Function","Cell Cycle","Photosynthesis","Respiration in Plants","Plant Growth & Development","Sexual Reproduction in Flowering Plants","Principles of Inheritance","Molecular Basis of Inheritance","Strategies for Enhancement","Ecology","Biodiversity"],
+  Zoology:["Animal Kingdom","Structural Organisation in Animals","Human Physiology","Digestion & Absorption","Breathing & Exchange of Gases","Body Fluids & Circulation","Excretory Products","Locomotion & Movement","Neural Control","Chemical Coordination","Human Reproduction","Reproductive Health","Evolution","Human Health & Disease","Microbes in Human Welfare"]
+};
+const colors={Physics:"#5b8def",Chemistry:"#b37bea",Botany:"#49bd79",Zoology:"#f0a553"};
+let currentSubject="Physics", timer=0, running=false, interval=null;
+let checked=JSON.parse(localStorage.getItem("neetChecked")||"{}");
+let sessions=JSON.parse(localStorage.getItem("neetSessions")||"[]");
+
+function pageShell(title,sub,body){return `<h1>${title}</h1><div class="subtitle">${sub}</div>${body}`}
+function dashboard(){
+  const totalDone=Object.values(checked).filter(Boolean).length;
+  const total=Object.values(subjects).reduce((a,b)=>a+b.length,0);
+  const pct=Math.round(totalDone/total*100);
+  return pageShell("Dashboard","Your NEET 2027 prep, at a glance.",`
+  <section class="card"><div class="muted">Countdown to NEET 2027 <span class="tag">expected date, unconfirmed</span></div>
+  <div class="countdown" id="countdown"></div></section>
+  <div class="progress-row"><div class="progress"><i style="width:${pct}%"></i></div><span class="muted">${totalDone}/${total} · ${pct}%</span></div>
+  <h2>This week's study time</h2><section class="card stats-card">${donut(totalStudy())}<div class="legend">${legend()}</div></section>`);
+}
+function donut(hours){const total=hours||0;return `<div class="donut" style="background:conic-gradient(#5b8def ${Math.min(total/10*360,360)}deg,#23272e 0deg)"><div class="donut-label">${total.toFixed(1)}h<small>total</small></div></div>`}
+function legend(){return Object.keys(subjects).map(s=>`<div class="legend-row"><span class="dot" style="background:${colors[s]}"></span>${s}<span class="hours">${subjectHours(s).toFixed(1)}h</span></div>`).join("")}
+function subjectHours(s){return sessions.filter(x=>x.subject===s).reduce((a,x)=>a+x.seconds,0)/3600}
+function totalStudy(){return sessions.reduce((a,x)=>a+x.seconds,0)/3600}
+
+function syllabus(){
+  const list=subjects[currentSubject];
+  return pageShell("Syllabus","Physics · Chemistry · Botany · Zoology — check off topics as you cover them.",`
+  <div class="notice">NTA/NMC hasn't officially released the NEET 2027 syllabus yet. This tracker uses a current structure carried over from the latest available syllabus. Re-check chapter names against the official PDF when it is released.</div>
+  <div class="subject-grid">${Object.entries(subjects).map(([s,a])=>`<button class="subject ${s===currentSubject?"selected":""}" data-subject="${s}"><b>${s}</b><small>${a.filter(x=>checked[s+"-"+x]).length}/${a.length} · ${Math.round(a.filter(x=>checked[s+"-"+x]).length/a.length*100)}%</small><div class="progress" style="margin-top:12px;height:5px"><i style="width:${a.filter(x=>checked[s+"-"+x]).length/a.length*100}%"></i></div></button>`).join("")}</div>
+  <div class="list">${list.map((x,i)=>`<label class="chapter"><input type="checkbox" data-check="${currentSubject}-${x}" ${checked[currentSubject+"-"+x]?"checked":""}><b>${x}</b><span class="arrow">0/4 ›</span></label>`).join("")}</div>`);
+}
+function timerPage(){
+  return pageShell("Study Timer","Pick a subject and track how long you study it.",`
+  <section class="card timer-card"><div class="tabs">${Object.keys(subjects).map(s=>`<button class="tab ${s===currentSubject?"active":""}" data-timersubject="${s}">${s}</button>`).join("")}</div>
+  <div class="clock" id="clock">${fmt(timer)}</div>
+  <div class="actions"><button class="btn primary" id="start">${running?"Pause":"Start"}</button><button class="btn green" id="save">Save session</button><button class="btn" id="discard">Discard</button></div></section>`);
+}
+function reports(){
+  return pageShell("Reports","How your study time splits across subjects.",`
+  <section class="card"><div class="pills"><button class="pill active">Today</button><button class="pill">This week</button><button class="pill">This month</button></div>
+  <div class="stats-card">${donut(totalStudy())}<div class="legend">${legend()}</div></div>
+  <div class="empty">${sessions.length} sessions logged in this period</div></section>`);
+}
+function simplePage(title,sub,body){return pageShell(title,sub,body)}
+let calendarDate = new Date();
+let selectedCalendarDate = new Date();
+let targets = JSON.parse(localStorage.getItem("neetDailyTargets") || "{}");
+
+function dateKey(d){
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+function prettyDate(d){
+  return d.toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+}
+function calendar(){
+  const year=calendarDate.getFullYear(), month=calendarDate.getMonth();
+  const first=new Date(year,month,1), last=new Date(year,month+1,0);
+  const startDay=first.getDay();
+  const days=last.getDate();
+  const prevDays=new Date(year,month,0).getDate();
+  const cells=[];
+  for(let i=0;i<42;i++){
+    let day=i-startDay+1, d, muted=false;
+    if(day<1){d=new Date(year,month-1,prevDays+day);muted=true}
+    else if(day>days){d=new Date(year,month+1,day-days);muted=true}
+    else d=new Date(year,month,day);
+    const key=dateKey(d), list=targets[key]||[];
+    const isToday=key===dateKey(new Date()), isSelected=key===dateKey(selectedCalendarDate);
+    cells.push(`<button class="calendar-date ${muted?"muted-date":""} ${isToday?"today":""} ${isSelected?"selected":""}" data-date="${key}">
+      <span class="date-number">${d.getDate()}</span>
+      ${list.length?`<span class="target-count">${list.filter(x=>x.done).length}/${list.length}</span>`:""}
+      ${list.slice(0,2).map(x=>`<div class="mini-target">${x.done?"✓ ":""}${escapeHtml(x.text)}</div>`).join("")}
+    </button>`);
+  }
+  const list=targets[dateKey(selectedCalendarDate)]||[];
+  return pageShell("Study Calendar","Plan exactly what you want to finish each day — your daily targets are saved automatically.",`
+  <div class="calendar-wrap">
+    <section class="card">
+      <div class="calendar-head">
+        <h2>${calendarDate.toLocaleDateString("en-IN",{month:"long",year:"numeric"})}</h2>
+        <div class="month-nav">
+          <button id="prevMonth">←</button><button id="todayMonth">Today</button><button id="nextMonth">→</button>
+        </div>
+      </div>
+      <div class="calendar-grid">
+        ${["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(x=>`<div class="weekday">${x}</div>`).join("")}
+        ${cells.join("")}
+      </div>
+    </section>
+    <section class="card target-panel">
+      <h3>Daily Targets</h3>
+      <div class="target-date-label">${prettyDate(selectedCalendarDate)}</div>
+      <div class="target-input">
+        <input id="targetInput" placeholder="e.g. Complete Kinematics numericals" />
+        <button id="addTarget">Add</button>
+      </div>
+      <div class="target-list">
+        ${list.length ? list.map((x,i)=>`<div class="target-item ${x.done?"done":""}">
+          <input type="checkbox" data-target-toggle="${i}" ${x.done?"checked":""}>
+          <span>${escapeHtml(x.text)}</span>
+          <button class="target-delete" data-target-delete="${i}">×</button>
+        </div>`).join("") : `<div class="no-targets">No targets for this day yet.<br>Add your first task above.</div>`}
+      </div>
+    </section>
+  </div>`);
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
+}
+function saveTargets(){
+  localStorage.setItem("neetDailyTargets",JSON.stringify(targets));
+}
+function addTarget(text){
+  const key=dateKey(selectedCalendarDate);
+  if(!text.trim()) return;
+  if(!targets[key]) targets[key]=[];
+  targets[key].push({text:text.trim(),done:false});
+  saveTargets(); render("calendar");
+}
+function leaderboard(){return simplePage("Leaderboard","Track consistency with your study group.",`<section class="card"><table class="table"><tr><th>Student</th><th>Study time</th><th>Sessions</th></tr><tr><td>You</td><td>${totalStudy().toFixed(1)} h</td><td>${sessions.length}</td></tr><tr><td>Study Buddy</td><td>18.4 h</td><td>22</td></tr><tr><td>Focus Champ</td><td>16.9 h</td><td>19</td></tr></table></section>`)}
+function mock(){return simplePage("Mock Tests","Practice under exam-like conditions.",`<div class="feature-grid"><section class="card feature"><h2>NEET Full Test 01</h2><p class="muted">200 questions · 200 minutes</p><button class="btn primary">Start test</button></section><section class="card feature"><h2>Physics Chapter Test</h2><p class="muted">45 questions · 45 minutes</p><button class="btn">View test</button></section></div>`)}
+function community(){return simplePage("Community","Study together and share progress.",`<div class="feature-grid"><section class="card feature"><h2>Daily Check-in</h2><p class="muted">Share today's target and keep your streak visible.</p></section><section class="card feature"><h2>Discussion</h2><p class="muted">Ask doubts, exchange resources, and discuss preparation strategies.</p></section></div>`)}
+function fmt(sec){const h=String(Math.floor(sec/3600)).padStart(2,"0"),m=String(Math.floor(sec%3600/60)).padStart(2,"0"),s=String(sec%60).padStart(2,"0");return `${h}:${m}:${s}`}
+
+function applyTheme(theme){
+  document.body.classList.toggle("light", theme==="light");
+  localStorage.setItem("neetTheme",theme);
+  const label=document.querySelector("#themeLabel");
+  const btn=document.querySelector("#themeToggle");
+  if(label) label.textContent=theme==="light"?"Dark mode":"Light mode";
+  if(btn) btn.firstChild.textContent=theme==="light"?"🌙 ":"☀️ ";
+}
+function bindTheme(){
+  const saved=localStorage.getItem("neetTheme")||"dark";
+  applyTheme(saved);
+  const btn=document.querySelector("#themeToggle");
+  if(btn) btn.onclick=()=>{
+    const next=document.body.classList.contains("light")?"dark":"light";
+    applyTheme(next);
+  };
+}
+
+function render(page="dashboard"){
+  document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+  const pages={dashboard,syllabus,timer:timerPage,leaderboard,calendar,reports,mock,community};
+  document.querySelector("#main").innerHTML=pages[page]();
+  bind(page);
+  bindTheme();
+}
+function bind(page){
+  if(page==="dashboard") startCountdown();
+  document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>render(b.dataset.page));
+  document.querySelectorAll("[data-subject]").forEach(b=>b.onclick=()=>{currentSubject=b.dataset.subject;render("syllabus")});
+  document.querySelectorAll("[data-check]").forEach(c=>c.onchange=()=>{checked[c.dataset.check]=c.checked;localStorage.setItem("neetChecked",JSON.stringify(checked));render("syllabus")});
+  document.querySelectorAll("[data-timersubject]").forEach(b=>b.onclick=()=>{currentSubject=b.dataset.timersubject;render("timer")});
+  if(page==="calendar"){
+    document.querySelectorAll("[data-date]").forEach(b=>b.onclick=()=>{
+      const [y,m,d]=b.dataset.date.split("-").map(Number);
+      selectedCalendarDate=new Date(y,m-1,d);
+      render("calendar");
+    });
+    document.querySelector("#prevMonth").onclick=()=>{calendarDate.setMonth(calendarDate.getMonth()-1);render("calendar")};
+    document.querySelector("#nextMonth").onclick=()=>{calendarDate.setMonth(calendarDate.getMonth()+1);render("calendar")};
+    document.querySelector("#todayMonth").onclick=()=>{calendarDate=new Date();selectedCalendarDate=new Date();render("calendar")};
+    document.querySelector("#addTarget").onclick=()=>addTarget(document.querySelector("#targetInput").value);
+    document.querySelector("#targetInput").onkeydown=e=>{if(e.key==="Enter")addTarget(e.target.value)};
+    document.querySelectorAll("[data-target-toggle]").forEach(b=>b.onchange=()=>{
+      const key=dateKey(selectedCalendarDate), i=Number(b.dataset.targetToggle);
+      if(targets[key]?.[i]) targets[key][i].done=b.checked;
+      saveTargets(); render("calendar");
+    });
+    document.querySelectorAll("[data-target-delete]").forEach(b=>b.onclick=()=>{
+      const key=dateKey(selectedCalendarDate), i=Number(b.dataset.targetDelete);
+      if(targets[key]) targets[key].splice(i,1);
+      saveTargets(); render("calendar");
+    });
+  }
+  if(page==="timer"){
+    document.querySelector("#start").onclick=()=>{running=!running;if(running){interval=setInterval(()=>{timer++;document.querySelector("#clock").textContent=fmt(timer)},1000)}else clearInterval(interval);document.querySelector("#start").textContent=running?"Pause":"Start"};
+    document.querySelector("#save").onclick=()=>{if(timer){sessions.push({subject:currentSubject,seconds:timer,date:new Date().toISOString()});localStorage.setItem("neetSessions",JSON.stringify(sessions));timer=0;running=false;clearInterval(interval);render("timer")}};
+    document.querySelector("#discard").onclick=()=>{timer=0;running=false;clearInterval(interval);render("timer")};
+  }
+}
+function startCountdown(){
+ const el=document.querySelector("#countdown"); if(!el)return;
+ // Expected date placeholder: May 2, 2027. Update when the official date is announced.
+ const target=new Date("2027-05-02T10:00:00+05:30");
+ const tick=()=>{let d=Math.max(0,target-Date.now()),days=Math.floor(d/86400000);d%=86400000;let h=Math.floor(d/3600000);d%=3600000;let m=Math.floor(d/60000);let s=Math.floor(d/1000)%60;el.innerHTML=`<div><strong>${days}</strong><small>days</small></div><div><strong>${h}</strong><small>hrs</small></div><div><strong>${m}</strong><small>min</small></div><div><strong>${s}</strong><small>sec</small></div>`};tick();setInterval(tick,1000)
+}
+render();
+
+</script>
+</body>
+</html>
