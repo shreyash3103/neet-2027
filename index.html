@@ -331,14 +331,34 @@ function addTarget(text){
   targets[key].push({text:text.trim(),done:false});
   saveTargets(); render("calendar");
 }
-function leaderboard(){return simplePage("Leaderboard","Track consistency with your study group.",`<div class="personal-hero">
-  <div>
-    <div class="eyebrow">WELCOME BACK, <span id="welcomeName">STUDENT</span></div>
-    <h1>Your NEET 2027 journey starts here.</h1>
-    <p>Stay consistent, track your preparation, and make today count.</p>
-  </div>
-  <div class="hero-avatar">S</div>
-</div><section class="card"><table class="table"><tr><th>Student</th><th>Study time</th><th>Sessions</th></tr><tr><td>You</td><td>${totalStudy().toFixed(1)} h</td><td>${sessions.length}</td></tr><tr><td>Study Buddy</td><td>18.4 h</td><td>22</td></tr><tr><td>Focus Champ</td><td>16.9 h</td><td>19</td></tr></table></section>`)}
+let leaderboardRows=[],leaderboardError="",leaderboardLoading=false,leaderboardPoll=null,activePage="dashboard";
+function leaderboardTable(){
+  if(!window.neetGoogleUser)return `<div class="empty">Sign in with Google to join the live leaderboard. Your name and saved study hours will be visible to other signed-in students.</div>`;
+  if(leaderboardLoading&&!leaderboardRows.length)return `<div class="empty">Loading the live rankings…</div>`;
+  if(leaderboardError&&!leaderboardRows.length)return `<div class="empty">${escapeHtml(leaderboardError)} <button class="btn" id="leaderboardRetry">Try again</button></div>`;
+  if(!leaderboardRows.length)return `<div class="empty">No study hours recorded yet. Save a session with the Study Timer to appear here.</div>`;
+  return `<div style="overflow-x:auto"><table class="table"><thead><tr><th>Rank</th><th>Student</th><th>Total study time</th></tr></thead><tbody>${leaderboardRows.map((row,i)=>`<tr><td>${i+1}</td><td>${escapeHtml(row.display_name||"Student")}${row.user_id===window.neetGoogleUser?.id?" <span class=\"tag\">You</span>":""}</td><td>${(Number(row.study_seconds||0)/3600).toFixed(1)} h</td></tr>`).join("")}</tbody></table></div>`;
+}
+function leaderboard(){return simplePage("Leaderboard","Live ranking by saved Study Timer hours. Rankings refresh automatically.",`<div class="personal-hero"><div><div class="eyebrow">NEET STUDY HOURS</div><h1>Study consistently. Climb the ranks.</h1><p>Only signed-in students appear. Your display name and total saved study hours are shared with signed-in users.</p></div><div class="hero-avatar">🏆</div></div><section class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px"><strong>Top students</strong><button class="btn" id="leaderboardRefresh">Refresh</button></div><div id="leaderboardContent">${leaderboardTable()}</div><p class="muted" style="font-size:12px;margin:14px 0 0">Hours are based on sessions saved with the Study Timer. Sign in to add your hours.</p></section>`)}
+async function loadLeaderboard(){
+  const client=window.neetSupabase;
+  if(!client||!window.neetGoogleUser){leaderboardRows=[];leaderboardError="";leaderboardLoading=false;const box=document.querySelector("#leaderboardContent");if(box)box.innerHTML=leaderboardTable();return}
+  leaderboardLoading=true;leaderboardError="";
+  const box=document.querySelector("#leaderboardContent");if(box&&!leaderboardRows.length)box.innerHTML=leaderboardTable();
+  const {data,error}=await client.from("study_leaderboard").select("user_id,display_name,study_seconds,updated_at").order("study_seconds",{ascending:false}).order("updated_at",{ascending:true}).limit(100);
+  leaderboardLoading=false;
+  if(error){leaderboardError="Could not load rankings. Check that the leaderboard database setup is complete.";if(!leaderboardRows.length)leaderboardRows=[]}
+  else{leaderboardRows=data||[];leaderboardError=""}
+  const currentBox=document.querySelector("#leaderboardContent");if(currentBox)currentBox.innerHTML=leaderboardTable();
+  const retry=document.querySelector("#leaderboardRetry");if(retry)retry.onclick=loadLeaderboard;
+}
+async function publishSavedStudySession(seconds){
+  const client=window.neetSupabase,user=window.neetGoogleUser;if(!client||!user)return;
+  const displayName=(user.user_metadata?.full_name||user.user_metadata?.name||user.email||"Student").trim().slice(0,60);
+  const {error}=await client.rpc("add_my_study_hours",{p_seconds:Math.floor(seconds),p_display_name:displayName});
+  if(error){const status=document.querySelector("#googleAuthStatus");if(status)status.textContent="Session saved on this device, but could not update the live leaderboard. Try again later.";return}
+  if(activePage==="leaderboard")loadLeaderboard();
+}
 const mockTests = {
   full: {
     title:"NEET Practice Paper 01",
@@ -968,6 +988,7 @@ function saveProfileSetup(){
 }
 
 function render(page="dashboard"){
+  activePage=page;
   document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
   const pages={dashboard,syllabus,practice,timer:timerPage,leaderboard,calendar,reports,mock,mockRun:()=>mockTestPage(mockState?.id||"full"),community,aboutCreator};
   document.querySelector("#main").innerHTML=pages[page]();
@@ -978,6 +999,12 @@ function render(page="dashboard"){
 }
 function bind(page){
   if(page==="dashboard") startCountdown();
+  if(page==="leaderboard"){
+    clearInterval(leaderboardPoll);loadLeaderboard();
+    leaderboardPoll=setInterval(loadLeaderboard,15000);
+    const refresh=document.querySelector("#leaderboardRefresh");if(refresh)refresh.onclick=loadLeaderboard;
+    const retry=document.querySelector("#leaderboardRetry");if(retry)retry.onclick=loadLeaderboard;
+  }else clearInterval(leaderboardPoll);
   document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>render(b.dataset.page));
   document.querySelectorAll("[data-subject]").forEach(b=>b.onclick=()=>{currentSubject=b.dataset.subject;render("syllabus")});
   document.querySelectorAll("[data-check]").forEach(c=>c.onchange=()=>{checked[c.dataset.check]=c.checked;localStorage.setItem("neetChecked",JSON.stringify(checked));render("syllabus")});
@@ -1025,7 +1052,7 @@ function bind(page){
   if(page==="mockRun") bindMockTest();
   if(page==="timer"){
     document.querySelector("#start").onclick=()=>{running=!running;if(running){interval=setInterval(()=>{timer++;document.querySelector("#clock").textContent=fmt(timer)},1000)}else clearInterval(interval);document.querySelector("#start").textContent=running?"Pause":"Start"};
-    document.querySelector("#save").onclick=()=>{if(timer){sessions.push({subject:currentSubject,seconds:timer,date:new Date().toISOString()});localStorage.setItem("neetSessions",JSON.stringify(sessions));timer=0;running=false;clearInterval(interval);render("timer")}};
+    document.querySelector("#save").onclick=()=>{if(timer){const savedSeconds=timer;sessions.push({subject:currentSubject,seconds:savedSeconds,date:new Date().toISOString()});localStorage.setItem("neetSessions",JSON.stringify(sessions));timer=0;running=false;clearInterval(interval);render("timer");publishSavedStudySession(savedSeconds)}};
     document.querySelector("#discard").onclick=()=>{timer=0;running=false;clearInterval(interval);render("timer")};
   }
 }
@@ -1046,6 +1073,17 @@ if(saveProfileBtn) saveProfileBtn.onclick=saveProfileSetup;
   const status=document.querySelector("#googleAuthStatus"),button=document.querySelector("#googleAuthButton");
   if(!window.supabase?.createClient){if(status)status.textContent="Google sign-in could not load. Check your internet connection and refresh.";return}
   const authClient=window.supabase.createClient("https://ldefaxixqkhwkzkxiyrq.supabase.co","sb_publishable_Ij5VLMQ7oK53_KYShPBnhw_At0l2xWd");
+  window.neetSupabase=authClient;
+  const syncLocalStudyHours=async(user)=>{
+    if(!user)return;
+    const seconds=Math.floor(sessions.reduce((sum,item)=>sum+Number(item.seconds||0),0));
+    if(seconds>0){
+      const displayName=(user.user_metadata?.full_name||user.user_metadata?.name||user.email||"Student").trim().slice(0,60);
+      const {error}=await authClient.rpc("sync_my_study_hours",{p_total_seconds:seconds,p_display_name:displayName});
+      if(error){if(status)status.textContent="Signed in. Could not sync your existing study hours yet; new saved sessions will retry.";return}
+    }
+    if(activePage==="leaderboard")loadLeaderboard();
+  };
   window.updateGoogleLoginDisplay=(user)=>{
     window.neetGoogleUser=user||null;
     if(button)button.textContent=user?"Sign out":"Continue with Google";
@@ -1056,7 +1094,7 @@ if(saveProfileBtn) saveProfileBtn.onclick=saveProfileSetup;
       if(name)name.textContent=displayName;
       if(avatar)avatar.textContent=(displayName[0]||"S").toUpperCase();
       if(accountLabel)accountLabel.textContent="Signed in with Google";
-      if(status)status.textContent="Account signed in. Study progress is still saved in this browser.";
+      if(status)status.textContent="Signed in. Saved timer sessions count toward the live leaderboard.";
     }else{
       if(typeof applyProfile==="function")applyProfile();
       if(accountLabel)accountLabel.textContent="NEET 2027 Aspirant";
@@ -1076,10 +1114,10 @@ if(saveProfileBtn) saveProfileBtn.onclick=saveProfileSetup;
     const {error}=await authClient.auth.signInWithOAuth({provider:"google",options:{redirectTo:"https://shreyash3103.github.io/neet-2027/"}});
     if(error){button.disabled=false;if(status)status.textContent="Sign-in could not start. Check the Google and Supabase settings, then try again."}
   };
-  authClient.auth.onAuthStateChange((_event,session)=>window.updateGoogleLoginDisplay(session?.user||null));
+  authClient.auth.onAuthStateChange((_event,session)=>{const user=session?.user||null;window.updateGoogleLoginDisplay(user);setTimeout(()=>{if(activePage==="leaderboard")render("leaderboard");syncLocalStudyHours(user)},0)});
   authClient.auth.getSession().then(({data,error})=>{
     if(error){if(status)status.textContent="Could not check your sign-in status. Refresh and try again.";return}
-    window.updateGoogleLoginDisplay(data.session?.user||null);
+    const user=data.session?.user||null;window.updateGoogleLoginDisplay(user);syncLocalStudyHours(user);
   });
 })();
 </script>
