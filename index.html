@@ -256,8 +256,125 @@ body.light .profile-setup{background:rgba(15,20,28,.35)}body.light .setup-card{b
 body.light .sidebar{box-shadow:0 5px 18px rgba(31,45,61,.08)}
 </style>
 
+<style>
+/* Optional NEET scroll portal page */
+.neet-portal{--portal-progress:0;--portal-zoom:1;--portal-word-opacity:1;--portal-scene-opacity:0;color:#f3f7f4}
+.neet-portal-runway{height:225svh;position:relative;background:#08110f}
+.neet-portal-stage{height:100svh;min-height:560px;position:sticky;top:0;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 55%,#183b2e 0,#0c1e18 38%,#08110f 76%)}
+.neet-portal-stage:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.18;background-image:radial-gradient(#b9ffe0 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent)}
+.neet-portal-glow{position:absolute;width:min(75vw,780px);aspect-ratio:1;border-radius:50%;left:50%;top:52%;transform:translate(-50%,-50%) scale(calc(.38 + var(--portal-progress)*1.1));background:radial-gradient(circle,#6affa933 0,#42e8a30c 42%,transparent 70%);filter:blur(8px);pointer-events:none}
+.neet-portal-header{position:absolute;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:clamp(16px,4vw,34px) clamp(16px,5vw,52px);z-index:3;font-size:12px;font-weight:800;letter-spacing:.08em}
+.neet-portal-brand{display:flex;align-items:center;gap:10px}.neet-portal-logo{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,#54e4ab,#5489ff);color:#08110f;font-size:15px}.neet-portal-tag{color:#a9b9b0;font-size:10px;text-transform:uppercase;letter-spacing:.14em}
+.neet-portal-scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:70px 22px;opacity:var(--portal-scene-opacity);transform:scale(calc(.9 + var(--portal-progress)*.1));z-index:1}
+.neet-portal-kicker{margin:0 0 12px;color:#64edbd;font-size:11px;font-weight:800;letter-spacing:.19em;text-transform:uppercase}
+.neet-portal-scene h1{max-width:820px;margin:0;color:#f3f7f4;font-size:clamp(38px,7vw,78px);line-height:.98;letter-spacing:-.06em;text-wrap:balance}
+.neet-portal-scene p{max-width:540px;margin:16px 0 0;color:#b7c5bd;font-size:clamp(14px,2vw,17px);line-height:1.6}
+.neet-portal-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;width:min(700px,100%);margin-top:26px;text-align:left}
+.neet-portal-card{padding:13px;border:1px solid #ffffff20;border-radius:12px;background:#ffffff08;backdrop-filter:blur(10px)}.neet-portal-card b{display:block;color:#f3f7f4;font-size:13px}.neet-portal-card span{display:block;margin-top:4px;color:#aab8b0;font-size:11px;line-height:1.4}
+.neet-portal-word{position:absolute;z-index:2;left:50%;top:51%;display:flex;align-items:center;transform:translate(-50%,-50%) scale(var(--portal-zoom));transform-origin:50% 50%;opacity:var(--portal-word-opacity);font-size:clamp(130px,25vw,330px);font-weight:950;line-height:.78;letter-spacing:-.12em;color:#f2fff7;text-shadow:0 0 32px #72ffc34a,0 0 100px #53ecaa22;white-space:nowrap;will-change:transform,opacity;pointer-events:none}
+.neet-portal-word span{display:block}.neet-portal-word span.is-focused{color:#64edbd;text-shadow:0 0 30px #64edbd99,0 0 90px #64edbd55}
+.neet-portal-controls{position:absolute;z-index:4;left:50%;bottom:clamp(72px,11vh,104px);transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:6px 8px;border:1px solid #ffffff22;border-radius:999px;background:#07100dd9;backdrop-filter:blur(12px);white-space:nowrap}
+.neet-portal-controls-label{padding:0 6px;color:#a7b8ae;font-size:10px}.neet-portal-focus{width:31px;height:31px;border:1px solid transparent;border-radius:50%;background:transparent;color:#e7f2eb;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer}.neet-portal-focus:hover,.neet-portal-focus[aria-pressed="true"]{border-color:#64edbd66;background:#64edbd1f;color:#64edbd}
+.neet-portal-hint{position:absolute;z-index:3;bottom:19px;left:50%;transform:translateX(-50%);color:#a7b8ae;font-size:10px;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}.neet-portal-after{padding:clamp(32px,7vw,72px);background:#f4f6f1;color:#17241d}.neet-portal-after h2{margin:0;font-size:clamp(28px,5vw,52px);line-height:1.05;letter-spacing:-.05em}.neet-portal-after p{max-width:650px;color:#5a685f;line-height:1.6}.neet-portal-replay{margin-top:10px;padding:11px 14px;border:0;border-radius:9px;background:#183e2d;color:#fff;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+body.light .neet-portal-after{background:#f4f6f1}
+@media(max-width:600px){.neet-portal-stage{min-height:520px}.neet-portal-header{padding:15px}.neet-portal-tag{font-size:8px}.neet-portal-word{font-size:clamp(112px,29vw,190px);letter-spacing:-.13em}.neet-portal-controls{bottom:112px;gap:3px}.neet-portal-controls-label{font-size:9px;padding:0 3px}.neet-portal-focus{width:29px;height:29px}.neet-portal-scene{padding:60px 18px}.neet-portal-scene h1{font-size:clamp(38px,10vw,58px)}.neet-portal-scene p{font-size:13px;margin-top:12px}.neet-portal-cards{grid-template-columns:1fr;gap:6px;margin-top:17px;max-width:340px}.neet-portal-card{padding:9px 11px}.neet-portal-card b{font-size:12px}.neet-portal-card span{font-size:10px;margin-top:2px}.neet-portal-hint{font-size:8px;bottom:69px}}
+</style>
+
+<style>
+/* Launch journey: portal, personal study summary, then the regular dashboard. */
+body.intro-active .mobile-bottom-nav,body.intro-active .mobile-more-panel{display:none!important}
+.launch-experience{background:#08110f;color:#f3f7f4}
+.launch-runway{height:190svh;position:relative;background:#08110f}
+.launch-stage{height:100svh;min-height:560px;position:sticky;top:0;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 55%,#183b2e 0,#0c1e18 38%,#08110f 76%)}
+.launch-stage:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.17;background-image:radial-gradient(#b9ffe0 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent)}
+.launch-glow{position:absolute;width:min(80vw,760px);aspect-ratio:1;border-radius:50%;left:50%;top:52%;transform:translate(-50%,-50%) scale(calc(.4 + var(--launch-progress,0)*1.1));background:radial-gradient(circle,#6affa933 0,#42e8a30c 42%,transparent 70%);filter:blur(8px);pointer-events:none}
+.launch-header{position:absolute;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:clamp(16px,4vw,34px) clamp(16px,5vw,52px);z-index:3;font-size:12px;font-weight:800;letter-spacing:.08em}
+.launch-brand{display:flex;align-items:center;gap:10px}.launch-logo{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,#54e4ab,#5489ff);color:#08110f;font-size:15px}
+.launch-skip{padding:8px 11px;border:1px solid #ffffff35;border-radius:999px;background:#ffffff0b;color:#edf8f1;font:inherit;font-size:10px;letter-spacing:0;cursor:pointer}
+.launch-scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:70px 22px;opacity:var(--launch-scene-opacity,0);transform:scale(calc(.9 + var(--launch-progress,0)*.1));z-index:1}
+.launch-kicker{margin:0 0 12px;color:#64edbd;font-size:11px;font-weight:800;letter-spacing:.19em;text-transform:uppercase}
+.launch-scene h1{max-width:820px;margin:0;color:#f3f7f4;font-size:clamp(38px,7vw,78px);line-height:.98;letter-spacing:-.06em;text-wrap:balance}
+.launch-scene p{max-width:550px;margin:15px 0 0;color:#b7c5bd;font-size:clamp(14px,2vw,17px);line-height:1.6}
+.launch-word{position:absolute;z-index:2;left:50%;top:51%;display:flex;align-items:center;transform:translate(-50%,-50%) scale(var(--launch-zoom,1));transform-origin:50% 50%;opacity:var(--launch-word-opacity,1);font-size:clamp(130px,25vw,330px);font-weight:950;line-height:.78;letter-spacing:-.12em;color:#f2fff7;text-shadow:0 0 32px #72ffc34a,0 0 100px #53ecaa22;white-space:nowrap;will-change:transform,opacity;pointer-events:none}
+.launch-word span{display:block}.launch-word span.is-focused{color:#64edbd;text-shadow:0 0 30px #64edbd99,0 0 90px #64edbd55}
+.launch-controls{position:absolute;z-index:4;left:50%;bottom:clamp(73px,11vh,104px);transform:translateX(-50%);display:flex;align-items:center;gap:5px;padding:6px 8px;border:1px solid #ffffff22;border-radius:999px;background:#07100dd9;backdrop-filter:blur(12px);white-space:nowrap}
+.launch-controls-label{padding:0 5px;color:#a7b8ae;font-size:10px}.launch-focus{width:30px;height:30px;border:1px solid transparent;border-radius:50%;background:transparent;color:#e7f2eb;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer}.launch-focus:hover,.launch-focus[aria-pressed="true"]{border-color:#64edbd66;background:#64edbd1f;color:#64edbd}
+.launch-hint{position:absolute;z-index:3;bottom:18px;left:50%;transform:translateX(-50%);color:#a7b8ae;font-size:10px;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+.launch-student-card{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:12px;width:min(480px,100%);margin-top:24px;padding:17px;border:1px solid #ffffff25;border-radius:15px;background:#ffffff0d;text-align:left;backdrop-filter:blur(12px)}
+.launch-student-avatar{width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#5b8def,#7d5bea);font-size:18px;font-weight:800}
+.launch-student-name{display:block;font-size:clamp(17px,3vw,23px);font-weight:800;overflow-wrap:anywhere}.launch-student-caption{display:block;margin-top:3px;color:#aab8b0;font-size:11px}
+.launch-hours{grid-column:1/-1;display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding-top:12px;border-top:1px solid #ffffff20}.launch-hours strong{color:#64edbd;font-size:clamp(24px,5vw,36px);letter-spacing:-.04em}.launch-hours span{color:#afbeb5;font-size:12px}
+.launch-app-start{height:1px;scroll-margin-top:0}
+@media(max-width:600px){.launch-stage{min-height:520px}.launch-header{padding:14px}.launch-brand{font-size:10px;gap:7px}.launch-logo{width:29px;height:29px}.launch-skip{font-size:9px;padding:7px 9px}.launch-word{font-size:clamp(112px,29vw,190px);letter-spacing:-.13em}.launch-word[data-launch-word="student"]{font-size:clamp(85px,20vw,142px)}.launch-controls{bottom:112px;gap:2px}.launch-controls-label{font-size:9px;padding:0 3px}.launch-focus{width:28px;height:28px}.launch-hint{bottom:69px;font-size:8px}.launch-scene{padding:60px 18px}.launch-scene h1{font-size:clamp(38px,10vw,58px)}.launch-scene p{font-size:13px;margin-top:12px}.launch-student-card{margin-top:16px;padding:13px;gap:9px}.launch-student-avatar{width:40px;height:40px;font-size:15px}.launch-student-caption{font-size:10px}.launch-hours{padding-top:9px}}
+</style>
+
+<style id="forest-dashboard-theme">
+/* Match the dashboard, cards, and navigation to the launch-screen forest palette. */
+body:not(.light){background:#08110f;color:#f3f7f4}
+body:not(.light) .app{background:#08110f;color:#f3f7f4}
+body:not(.light) .sidebar{background:#0c1e18;border-color:#243a30}
+body:not(.light) .brand-logo{background:linear-gradient(135deg,#54e4ab,#64edbd);color:#08110f}
+body:not(.light) .nav-item{color:#aab8b0}
+body:not(.light) .nav-item span{color:#90aa9b}
+body:not(.light) .nav-item:hover{background:#12291f;color:#f3f7f4}
+body:not(.light) .nav-item.active{background:#143629;color:#64edbd}
+body:not(.light) .nav-item.active span{color:#64edbd}
+body:not(.light) .card,body:not(.light) .subject,body:not(.light) .chapter,body:not(.light) .calendar-date,body:not(.light) .day,body:not(.light) .feature,body:not(.light) .target-item,body:not(.light) .streak-stats div,body:not(.light) .sidebar-profile,body:not(.light) .identity-strip{background:#10251d;border-color:#294437;color:#f3f7f4}
+body:not(.light) .notice{background:#0e2119;border-color:#294437;color:#b6c8bd}
+body:not(.light) .muted,body:not(.light) .subtitle,body:not(.light) .empty,body:not(.light) .subject small,body:not(.light) .target-date-label,body:not(.light) .weekday,body:not(.light) .mini-target,body:not(.light) .legend-row .hours{color:#aab8b0}
+body:not(.light) .tag{background:#1b382b;color:#c3d5ca}
+body:not(.light) .progress{background:#0c1e18;border-color:#294437}
+body:not(.light) .progress>i{background:#64edbd}
+body:not(.light) .subject.selected,body:not(.light) .tab.active,body:not(.light) .calendar-date.selected{border-color:#64edbd;box-shadow:0 0 0 1px #64edbd inset}
+body:not(.light) .calendar-date.today,body:not(.light) .day.today{border-color:#64edbd}
+body:not(.light) .calendar-date.selected,body:not(.light) .day.done{background:#143629}
+body:not(.light) .target-input input,body:not(.light) .card input,body:not(.light) .card select,body:not(.light) .card textarea,body:not(.light) .practice-controls select{background:#0c1e18;border-color:#355545;color:#f3f7f4}
+body:not(.light) .target-input input:focus,body:not(.light) .card input:focus,body:not(.light) .card select:focus,body:not(.light) .practice-controls select:focus{border-color:#64edbd;outline-color:#64edbd}
+body:not(.light) .target-input button,body:not(.light) .btn.primary,body:not(.light) .profile-setup .btn.primary{background:#167c59;border-color:#64edbd;color:#fff}
+body:not(.light) .btn.green{background:#18553d;border-color:#2b7656;color:#f3f7f4}
+body:not(.light) .btn:not(.primary):not(.green),body:not(.light) .month-nav button,body:not(.light) .theme-toggle button,body:not(.light) .tab{background:#10251d;border-color:#294437;color:#e5f0e9}
+body:not(.light) .btn:hover,body:not(.light) .month-nav button:hover,body:not(.light) .theme-toggle button:hover{filter:brightness(1.13)}
+body:not(.light) .pill{border-color:#294437;color:#aab8b0}
+body:not(.light) .pill.active{background:#143629;color:#64edbd}
+body:not(.light) .table th,body:not(.light) .table td{border-color:#294437;color:#c8d6ce}
+body:not(.light) .table th{color:#f3f7f4}
+body:not(.light) .practice-option{background:#10251d;border-color:#355545;color:#f3f7f4}
+body:not(.light) .practice-option:hover:not(:disabled),body:not(.light) .practice-option:focus-visible{border-color:#64edbd}
+body:not(.light) .practice-option.correct{border-color:#64edbd;background:#143629;color:#e8fff3}
+body:not(.light) .google-auth-button{background:#10251d;border-color:#64edbd;color:#c7f7df}
+body:not(.light) .mobile-bottom-nav{background:#0c1e18;border-color:#294437}
+body:not(.light) .mobile-bottom-nav button{color:#aab8b0}
+body:not(.light) .mobile-bottom-nav button.active{background:#143629;color:#64edbd}
+body:not(.light) .mobile-more-panel{background:#0c1e18;border-color:#294437}
+body:not(.light) .mobile-more-panel button,body:not(.light) .mobile-more-panel a{background:#10251d;border-color:#294437;color:#e5f0e9}
+body:not(.light) .mobile-more-panel button span,body:not(.light) .mobile-more-panel a span{color:#64edbd}
+body:not(.light) .profile-avatar{background:#167c59}
+body:not(.light) .setup-card{background:#10251d;border-color:#294437;color:#f3f7f4}
+ .chapter-entry{display:grid;gap:0}
+ .chapter-expand{flex:1;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}
+ .chapter-expand b{min-width:0;overflow-wrap:anywhere}
+ .chapter-expand .arrow{display:flex;align-items:center;gap:7px;flex:none}
+ .chapter-subtopics{margin-top:-5px;padding:13px 16px 13px 54px;border:1px solid #294437;border-top:0;border-radius:0 0 11px 11px;background:#0c1e18}
+ .chapter-subtopics[hidden]{display:none!important}
+ .subtopics-title{margin-bottom:8px;color:#64edbd;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+ .subtopic{display:flex;align-items:flex-start;gap:9px;padding:8px 0;color:#c5d4cb;font-size:13px;line-height:1.45;cursor:pointer}
+ .subtopic input{width:16px;height:16px;flex:none;margin:1px 0 0;accent-color:#64edbd}
+ .subtopic input:checked+span{color:#8fa99a;text-decoration:line-through}
+ @media(max-width:600px){.chapter-subtopics{padding:12px 12px 12px 25px}.subtopic{font-size:12px}}
+</style>
+<style id="forest-navigation-background">
+body:not(.light) .app{
+  background-color:#08110f;
+  background-image:radial-gradient(ellipse at 86% 44%,rgba(44,135,95,.24),transparent 58%),radial-gradient(rgba(185,255,224,.16) 1px,transparent 1.2px);
+  background-size:auto,46px 46px;
+  background-repeat:no-repeat,repeat;
+  background-attachment:fixed;
+}
+body:not(.light) .sidebar{background:rgba(12,30,24,.62)}
+body:not(.light) main{background:transparent}
+</style>
 </head>
-<body>
+<body class="intro-active">
 <div id="profileSetup" class="profile-setup" style="display:none">
   <div class="setup-card">
     <div class="setup-logo">N</div>
@@ -270,6 +387,25 @@ body.light .sidebar{box-shadow:0 5px 18px rgba(31,45,61,.08)}
   </div>
 </div>
 
+  <div id="launchExperience" class="launch-experience" aria-label="Welcome to the NEET study portal">
+  <section class="launch-runway" data-launch-runway="portal" aria-label="NEET study portal">
+    <div class="launch-stage" data-launch-stage><div class="launch-glow" aria-hidden="true"></div>
+      <header class="launch-header"><span class="launch-brand"><span class="launch-logo">N</span>NEET 2027 · STUDY HUB</span><button class="launch-skip" type="button" data-launch-skip>Skip intro ↓</button></header>
+      <div class="launch-scene" aria-hidden="true"><p class="launch-kicker">Your preparation, in focus</p><h1>Welcome to your<br>NEET study portal.</h1><p>A focused space to plan, practice, and keep moving toward your goal.</p></div>
+      <div class="launch-word" data-launch-word="neet" aria-hidden="true"><span data-launch-letter="0">N</span><span data-launch-letter="1">E</span><span data-launch-letter="2">E</span><span data-launch-letter="3">T</span></div>
+      <div class="launch-controls" aria-label="Choose a letter to focus on"><span class="launch-controls-label">Focus through</span><button class="launch-focus" type="button" data-launch-focus="0" aria-label="Focus through N" aria-pressed="false">N</button><button class="launch-focus" type="button" data-launch-focus="1" aria-label="Focus through first E" aria-pressed="false">E</button><button class="launch-focus" type="button" data-launch-focus="2" aria-label="Focus through second E" aria-pressed="false">E</button><button class="launch-focus" type="button" data-launch-focus="3" aria-label="Focus through T" aria-pressed="false">T</button></div>
+      <div class="launch-hint">Scroll to step inside ↓</div>
+    </div>
+  </section>
+  <section class="launch-runway" data-launch-runway="student" aria-label="Your study progress">
+    <div class="launch-stage" data-launch-stage><div class="launch-glow" aria-hidden="true"></div>
+      <header class="launch-header"><span class="launch-brand"><span class="launch-logo">N</span>YOUR STUDY JOURNEY</span><button class="launch-skip" type="button" data-launch-skip>Skip intro ↓</button></header>
+      <div class="launch-scene" aria-hidden="true"><p class="launch-kicker">One focused hour at a time</p><h1>Keep building your<br>momentum.</h1><div class="launch-student-card"><div class="launch-student-avatar" id="launchStudentAvatar">S</div><div><span class="launch-student-name" id="launchStudentName">Student</span><span class="launch-student-caption">Your study journey</span></div><div class="launch-hours"><strong id="launchStudentHours">0.0 h</strong><span>saved study time</span></div></div></div>
+      <div class="launch-word" data-launch-word="student" aria-hidden="true"><span data-launch-letter>STUDY</span></div>
+      <div class="launch-hint">Scroll to open your dashboard ↓</div>
+    </div>
+  </section>
+</div>
   <div class="app">
     <aside class="sidebar">
     <div class="brand-wrap">
@@ -279,6 +415,7 @@ body.light .sidebar{box-shadow:0 5px 18px rgba(31,45,61,.08)}
       <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-expanded="false" aria-controls="siteNavigation" aria-label="Open menu">☰</button>
       <nav id="siteNavigation">
         <button class="nav-item active" data-page="dashboard"><span>▦</span>Dashboard</button>
+        
         <button class="nav-item" data-page="syllabus"><span>▣</span>Syllabus</button>
         <button class="nav-item" data-page="practice"><span>✎</span>Topic Practice</button>
         <button class="nav-item" data-page="timer"><span>◴</span>Study Timer</button>
@@ -310,6 +447,7 @@ body.light .sidebar{box-shadow:0 5px 18px rgba(31,45,61,.08)}
       <button type="button" id="mobileMoreButton" class="mobile-nav-item" aria-expanded="false" aria-controls="mobileMorePanel"><span class="mobile-nav-icon">•••</span><span class="mobile-nav-label">More</span></button>
     </nav>
     <div class="mobile-more-panel" id="mobileMorePanel" aria-label="More sections">
+      
       <button type="button" data-page="mock"><span>◎</span>Mock Tests</button>
       <button type="button" data-page="leaderboard"><span>♜</span>Leaderboard</button>
       <button type="button" data-page="calendar"><span>▦</span>Study Calendar</button>
@@ -324,14 +462,16 @@ body.light .sidebar{box-shadow:0 5px 18px rgba(31,45,61,.08)}
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
 const subjects = {
-  Physics:["Units & Measurement","Kinematics","Laws of Motion","Work, Energy & Power","Rotational Motion","Gravitation","Properties of Solids & Fluids","Thermodynamics","Kinetic Theory","Oscillations & Waves","Electrostatics","Current Electricity","Magnetic Effects of Current","Electromagnetic Induction","Optics","Dual Nature of Matter","Atoms & Nuclei","Electronic Devices"],
-  Chemistry:["Some Basic Concepts of Chemistry","Structure of Atom","Classification of Elements","Chemical Bonding","Thermodynamics","Equilibrium","Redox Reactions","Solutions","Electrochemistry","Chemical Kinetics","Surface Chemistry","Coordination Compounds","Organic Chemistry Basics","Hydrocarbons","Haloalkanes & Haloarenes","Alcohols, Phenols & Ethers","Aldehydes & Ketones","Amines","Biomolecules"],
-  Botany:["The Living World","Biological Classification","Plant Kingdom","Morphology of Flowering Plants","Anatomy of Flowering Plants","Cell: Structure & Function","Cell Cycle","Photosynthesis","Respiration in Plants","Plant Growth & Development","Sexual Reproduction in Flowering Plants","Principles of Inheritance","Molecular Basis of Inheritance","Strategies for Enhancement","Ecology","Biodiversity"],
+  Physics:["Units & Measurement","Kinematics","Laws of Motion","Work, Energy & Power","Rotational Motion","Gravitation","Properties of Solids & Fluids","Thermodynamics","Kinetic Theory","Oscillations & Waves","Electrostatics","Current Electricity","Magnetic Effects of Current","Electromagnetic Induction","Electromagnetic Waves","Optics","Dual Nature of Matter","Atoms & Nuclei","Electronic Devices","Experimental Skills"],
+  Chemistry:["Some Basic Concepts of Chemistry","Structure of Atom","Classification of Elements","Chemical Bonding","Thermodynamics","Equilibrium","Redox Reactions","Solutions","Electrochemistry","Chemical Kinetics","p-Block Elements","d- and f-Block Elements","Coordination Compounds","Purification & Characterisation","Organic Chemistry Basics","Hydrocarbons","Haloalkanes & Haloarenes","Alcohols, Phenols & Ethers","Aldehydes & Ketones","Carboxylic Acids","Amines","Biomolecules","Principles Related to Practical Chemistry"],
+  Botany:["The Living World","Biological Classification","Plant Kingdom","Morphology of Flowering Plants","Anatomy of Flowering Plants","Cell: Structure & Function","Cell Cycle","Photosynthesis","Respiration in Plants","Plant Growth & Development","Sexual Reproduction in Flowering Plants","Principles of Inheritance","Molecular Basis of Inheritance","Biotechnology and Its Applications","Ecology","Biodiversity"],
   Zoology:["Animal Kingdom","Structural Organisation in Animals","Human Physiology","Digestion & Absorption","Breathing & Exchange of Gases","Body Fluids & Circulation","Excretory Products","Locomotion & Movement","Neural Control","Chemical Coordination","Human Reproduction","Reproductive Health","Evolution","Human Health & Disease","Microbes in Human Welfare"]
 };
 const colors={Physics:"#5b8def",Chemistry:"#b37bea",Botany:"#49bd79",Zoology:"#f0a553"};
 let currentSubject="Physics", timer=0, running=false, interval=null;
 let checked=JSON.parse(localStorage.getItem("neetChecked")||"{}");
+let checkedSubtopics=JSON.parse(localStorage.getItem("neetSubtopics")||"{}");
+let expandedSyllabusChapters=JSON.parse(localStorage.getItem("neetExpandedChapters")||"{}");
 let sessions=JSON.parse(localStorage.getItem("neetSessions")||"[]");
 let checkins=JSON.parse(localStorage.getItem("neetCheckins")||"{}");
 let discussions=JSON.parse(localStorage.getItem("neetDiscussions")||"[]");
@@ -347,6 +487,21 @@ function dashboard(){
   <div class="progress-row"><div class="progress"><i style="width:${pct}%"></i></div><span class="muted">${totalDone}/${total} · ${pct}%</span></div>
   <h2>This week's study time</h2><section class="card stats-card">${donut(totalStudy())}<div class="legend">${legend()}</div></section>`);
 }
+function portalPage(){
+  return `<div class="neet-portal" id="neetPortal">
+    <section class="neet-portal-runway" id="neetPortalRunway" aria-label="NEET study portal introduction">
+      <div class="neet-portal-stage" id="neetPortalStage">
+        <div class="neet-portal-glow" aria-hidden="true"></div>
+        <header class="neet-portal-header"><span class="neet-portal-brand"><span class="neet-portal-logo">N</span>NEET 2027 · STUDY HUB</span><span class="neet-portal-tag">A fresh perspective</span></header>
+        <div class="neet-portal-scene" aria-hidden="true"><p class="neet-portal-kicker">Your preparation, in focus</p><h1>Make every study session count.</h1><p>Build a steady NEET routine with focused practice, a clear syllabus plan, and time for revision.</p><div class="neet-portal-cards"><div class="neet-portal-card"><b>01 · Learn</b><span>Work through the syllabus one chapter at a time.</span></div><div class="neet-portal-card"><b>02 · Practice</b><span>Use questions to find what needs another look.</span></div><div class="neet-portal-card"><b>03 · Improve</b><span>Keep showing up and track your study sessions.</span></div></div></div>
+        <div class="neet-portal-word" id="neetPortalWord" aria-hidden="true"><span data-portal-letter="0">N</span><span data-portal-letter="1">E</span><span data-portal-letter="2">E</span><span data-portal-letter="3">T</span></div>
+        <div class="neet-portal-controls" aria-label="Choose a letter to focus on"><span class="neet-portal-controls-label">Focus through</span><button class="neet-portal-focus" data-portal-focus="0" aria-label="Focus through N" aria-pressed="false">N</button><button class="neet-portal-focus" data-portal-focus="1" aria-label="Focus through first E" aria-pressed="false">E</button><button class="neet-portal-focus" data-portal-focus="2" aria-label="Focus through second E" aria-pressed="false">E</button><button class="neet-portal-focus" data-portal-focus="3" aria-label="Focus through T" aria-pressed="false">T</button></div>
+        <div class="neet-portal-hint">Scroll to step inside ↓</div>
+      </div>
+    </section>
+    <section class="neet-portal-after"><p class="neet-portal-kicker">Keep moving forward</p><h2>A strong result is built one focused day at a time.</h2><p>Choose a letter above, then scroll to travel through the NEET portal.</p><button class="neet-portal-replay" id="neetPortalReplay">Replay the portal ↑</button></section>
+  </div>`;
+}
 function donut(hours){const total=hours||0;return `<div class="donut" style="background:conic-gradient(#5b8def ${Math.min(total/10*360,360)}deg,#23272e 0deg)"><div class="donut-label">${total.toFixed(1)}h<small>total</small></div></div>`}
 function legend(){return Object.keys(subjects).map(s=>`<div class="legend-row"><span class="dot" style="background:${colors[s]}"></span>${s}<span class="hours">${subjectHours(s).toFixed(1)}h</span></div>`).join("")}
 function subjectHours(s){return sessions.filter(x=>x.subject===s).reduce((a,x)=>a+x.seconds,0)/3600}
@@ -354,10 +509,89 @@ function totalStudy(){return sessions.reduce((a,x)=>a+x.seconds,0)/3600}
 
 function syllabus(){
   const list=subjects[currentSubject];
+  const detailedSubtopics={
+    "Physics|Units & Measurement":["Physical quantities, SI units, and unit conversion","Dimensions and dimensional formulae","Dimensional analysis and its applications","Least count, significant figures, and measurement errors"],
+    "Physics|Kinematics":["Frames of reference; position, displacement, speed, and velocity","Uniform and accelerated motion; equations of motion","Position-time and velocity-time graphs; vectors and components","Relative velocity, projectile motion, and uniform circular motion"],
+    "Physics|Laws of Motion":["Inertia, force, and Newton’s three laws","Momentum, impulse, and conservation of momentum","Free-body diagrams, equilibrium, and friction","Centripetal force; level and banked roads"],
+    "Physics|Work, Energy & Power":["Work by constant and variable forces","Kinetic energy and the work-energy theorem","Potential energy, springs, and conservation of mechanical energy","Power, vertical-circle motion, and elastic/inelastic collisions"],
+    "Physics|Rotational Motion":["Centre of mass and rigid-body motion","Torque, angular momentum, and conservation","Moment of inertia, radius of gyration, and axis theorems","Rotational equilibrium and equations of rotational motion"],
+    "Physics|Gravitation":["Universal law of gravitation and acceleration due to gravity","Variation of g; gravitational field, potential, and energy","Kepler’s laws and orbital motion","Satellites, orbital speed, time period, and escape velocity"],
+    "Physics|Properties of Solids & Fluids":["Elasticity, stress-strain curves, and elastic moduli","Fluid pressure, Pascal’s law, and buoyancy","Viscosity, Stokes’ law, terminal speed, and Bernoulli’s principle","Surface tension, capillarity, thermal expansion, calorimetry, and heat transfer"],
+    "Physics|Thermodynamics":["Thermal equilibrium, temperature, and zeroth law","Heat, work, internal energy, and the first law","Isothermal and adiabatic processes","Second law; reversible and irreversible processes"],
+    "Physics|Kinetic Theory":["Ideal-gas equation and work in gas compression","Kinetic theory assumptions and molecular pressure","Temperature, RMS speed, and degrees of freedom","Equipartition, specific heats, mean free path, and Avogadro constant"],
+    "Physics|Oscillations & Waves":["Periodic motion, time period, frequency, and phase","Simple harmonic motion; spring and simple pendulum","Wave speed, transverse/longitudinal waves, and superposition","Standing waves, strings and organ pipes, harmonics, and beats"],
+    "Physics|Electrostatics":["Charge, Coulomb’s law, superposition, and electric field","Electric dipoles, flux, and Gauss’s law applications","Electric potential, equipotential surfaces, and potential energy","Conductors, dielectrics, capacitors, combinations, and stored energy"],
+    "Physics|Current Electricity":["Current, drift velocity, mobility, and Ohm’s law","Resistance, resistivity, and series/parallel networks","Electrical energy, power, and V-I characteristics","Cells, Kirchhoff’s laws, Wheatstone bridge, and metre bridge"],
+    "Physics|Magnetic Effects of Current":["Magnetic force on charges and current-carrying wires","Biot-Savart law, Ampere’s law, and fields of wires/coils","Force between parallel currents and torque on a current loop","Moving-coil galvanometer; bar magnets and magnetic materials"],
+    "Physics|Electromagnetic Induction":["Faraday’s law, induced emf, and Lenz’s law","Eddy currents and self/mutual inductance","AC values, reactance, impedance, and series LCR resonance","AC power, generator, and transformer"],
+    "Physics|Electromagnetic Waves":["Displacement current and Maxwell’s idea","Nature and transverse properties of electromagnetic waves","Electromagnetic spectrum: radio to gamma rays","Applications of different electromagnetic bands"],
+    "Physics|Optics":["Reflection, mirrors, refraction, and lens formulae","Total internal reflection, prisms, microscopes, and telescopes","Wavefronts, Huygens’ principle, and Young’s double-slit experiment","Diffraction, polarization, and Polaroids"],
+    "Physics|Dual Nature of Matter":["Photoelectric effect and its observations","Einstein’s photoelectric equation and photon energy","Matter waves and de Broglie wavelength","Davisson-Germer experiment and wave-particle duality"],
+    "Physics|Atoms & Nuclei":["Rutherford and Bohr models of the atom","Hydrogen spectrum and energy levels","Nuclear size, mass defect, and binding energy","Radioactivity, fission, and fusion"],
+    "Physics|Electronic Devices":["Semiconductors and p-n junction diode I-V curves","Diode as a rectifier; LED and photodiode","Solar cell and Zener diode as a voltage regulator","OR, AND, NOT, NAND, and NOR logic gates"],
+    "Physics|Experimental Skills":["Vernier calipers, screw gauge, and measurement uncertainty","Simple pendulum, moments, elasticity, surface tension, and viscosity experiments","Resonance tube, calorimetry, Ohm’s law, and metre bridge","Galvanometer, focal length, prism, glass-slab, and diode experiments"],
+    "Chemistry|Some Basic Concepts of Chemistry":["Matter, atoms, molecules, elements, and compounds","Laws of chemical combination and atomic/molecular masses","Mole concept, molar mass, and percentage composition","Empirical/molecular formulae and stoichiometric calculations"],
+    "Chemistry|Structure of Atom":["Electromagnetic radiation, photoelectric effect, and hydrogen spectrum","Bohr model, de Broglie relation, and uncertainty principle","Quantum numbers, orbitals, and orbital shapes","Aufbau, Pauli, Hund rules, and electronic configurations"],
+    "Chemistry|Classification of Elements":["Modern periodic law and periodic-table structure","Blocks and electronic configurations","Atomic/ionic radii and ionization enthalpy trends","Electron-gain enthalpy, valency, oxidation state, and reactivity trends"],
+    "Chemistry|Chemical Bonding":["Lewis structures, ionic bonding, lattice enthalpy, and Fajans’ rule","Covalent bonding, electronegativity, dipole moment, and VSEPR","Hybridization, valence-bond theory, and molecular shapes","Molecular-orbital theory, bond order, metallic and hydrogen bonding"],
+    "Chemistry|Thermodynamics":["Systems, surroundings, properties, state functions, and processes","First law; heat, work, internal energy, and enthalpy","Hess’s law and enthalpies of reaction/formation/bonding","Entropy, spontaneity, Gibbs energy, and equilibrium link"],
+    "Chemistry|Equilibrium":["Dynamic equilibrium and physical equilibria; Henry’s law","Kc/Kp, reaction quotient, and Le Chatelier’s principle","Acid-base theories, pH, buffers, and salt hydrolysis","Solubility product, common-ion effect, and ionic equilibrium"],
+    "Chemistry|Redox Reactions":["Oxidation and reduction concepts","Oxidation numbers and rules for assigning them","Balancing redox equations by electron transfer","Redox reactions in aqueous and ionic equations"],
+    "Chemistry|Solutions":["Concentration units: molarity, molality, mole fraction, and percentage","Ideal/non-ideal solutions and Raoult’s law","Colligative properties and molecular-mass calculations","Abnormal molar mass and van ’t Hoff factor"],
+    "Chemistry|Electrochemistry":["Electrolytic/metallic conduction and molar conductivity","Kohlrausch’s law and conductivity changes with concentration","Galvanic/electrolytic cells, electrodes, and cell potential","Nernst equation, Gibbs energy, batteries, and fuel cells"],
+    "Chemistry|Chemical Kinetics":["Reaction rates and factors affecting rate","Rate laws, order, molecularity, and rate constants","Zero- and first-order integrated rate equations and half-life","Arrhenius equation, activation energy, and collision theory"],
+    "Chemistry|p-Block Elements":["Groups 13–18 and valence-shell configurations","Periodic trends across periods and down groups","General physical and chemical properties of p-block elements","Distinctive behaviour of the first element in each group"],
+    "Chemistry|d- and f-Block Elements":["Transition-element configurations, occurrence, and trends","Oxidation states, colour, magnetism, catalysis, and complexes","Preparation, properties, and uses of KMnO4 and K2Cr2O7","Lanthanoids, actinoids, and lanthanoid contraction"],
+    "Chemistry|Coordination Compounds":["Ligands, coordination number, denticity, and chelation","Werner theory and IUPAC nomenclature","Isomerism and valence-bond/crystal-field ideas","Colour, magnetism, and applications of coordination compounds"],
+    "Chemistry|Purification & Characterisation":["Crystallisation, sublimation, and distillation","Differential extraction and chromatography","Qualitative detection of N, S, P, and halogens","Quantitative estimation and empirical/molecular formula calculations"],
+    "Chemistry|Organic Chemistry Basics":["Functional groups, homologous series, and IUPAC naming","Hybridization, shapes, and structural/stereoisomerism","Bond fission, intermediates, electrophiles, and nucleophiles","Inductive/resonance effects and substitution/addition/elimination reactions"],
+    "Chemistry|Hydrocarbons":["Alkanes: conformations and free-radical halogenation","Alkenes: addition reactions, ozonolysis, and polymerization","Alkynes: acidity and addition reactions","Aromatic hydrocarbons: benzene, electrophilic substitution, and directing effects"],
+    "Chemistry|Haloalkanes & Haloarenes":["C-X bond, nomenclature, and preparation methods","Physical properties and nucleophilic substitution mechanisms","Reactivity of haloalkanes versus haloarenes","Uses and environmental effects of chloroform, freons, DDT, and iodoform"],
+    "Chemistry|Alcohols, Phenols & Ethers":["Preparation and reactions of alcohols; primary/secondary/tertiary tests","Dehydration of alcohols and oxidation patterns","Phenol acidity and electrophilic substitution; Reimer-Tiemann reaction","Ether structure, preparation, and properties"],
+    "Chemistry|Aldehydes & Ketones":["Carbonyl structure and relative reactivity","Nucleophilic addition: HCN, ammonia derivatives, and Grignard reagent","Oxidation, reduction, and distinguishing tests","Alpha-hydrogen, aldol, Cannizzaro, and haloform reactions"],
+    "Chemistry|Carboxylic Acids":["Carboxyl-group structure and nomenclature","Preparation and physical properties","Acidic strength and factors affecting acidity","Characteristic reactions and conversions"],
+    "Chemistry|Amines":["Classification, nomenclature, and preparation of amines","Structure and basicity of primary, secondary, and tertiary amines","Identification and characteristic reactions of amines","Diazonium salts and their synthetic applications"],
+    "Chemistry|Biomolecules":["Carbohydrates: glucose, fructose, sucrose, lactose, and maltose","Amino acids, peptide bonds, protein structure, and denaturation","Enzymes and vitamins: types, properties, and functions","DNA, RNA, and introductory hormone chemistry"],
+    "Chemistry|Principles Related to Practical Chemistry":["Detection of functional groups and extra elements in organic compounds","Preparation principles: Mohr’s salt, potash alum, and selected organic compounds","Acid-base and redox titrations with indicators","Salt analysis, enthalpy experiments, sols, and reaction-rate practicals"],
+    "Botany|The Living World":["Characteristics of living organisms and biodiversity","Need for classification and taxonomy/systematics","Species, taxonomic hierarchy, and binomial nomenclature","Taxonomic aids and naming conventions"],
+    "Botany|Biological Classification":["Five-kingdom classification and criteria","Monera and Protista: groups and distinguishing features","Fungi, lichens, and major fungal groups","Viruses, viroids, and prions"],
+    "Botany|Plant Kingdom":["Algae: groups, features, and examples","Bryophytes and pteridophytes: life cycles and examples","Gymnosperms: structure and reproduction","Comparative features of major plant groups"],
+    "Botany|Morphology of Flowering Plants":["Root, stem, and leaf forms and modifications","Inflorescence, flower structure, and floral formulae","Fruits, seeds, and their development","Key families: Malvaceae, Cruciferae, Leguminosae, Compositae, and Gramineae"],
+    "Botany|Anatomy of Flowering Plants":["Meristematic and permanent plant tissues","Internal anatomy of roots, stems, and leaves","Dicot and monocot anatomical differences","Secondary growth and tissue organization"],
+    "Botany|Cell: Structure & Function":["Cell theory and prokaryotic/eukaryotic cells","Cell membrane, cell wall, and transport basics","Organelles: nucleus, mitochondria, plastids, ribosomes, and endomembrane system","Cytoskeleton, cilia/flagella, biomolecules, and enzymes"],
+    "Botany|Cell Cycle":["Cell-cycle phases and checkpoints","Mitosis and its stages/significance","Meiosis I and II; crossing over","Comparison of mitosis and meiosis"],
+    "Botany|Photosynthesis":["Chloroplast, pigments, and light-harvesting","Light reactions, photolysis, and photophosphorylation","Calvin cycle; C3, C4, and photorespiration","Factors affecting photosynthesis"],
+    "Botany|Respiration in Plants":["Glycolysis and fermentation","Link reaction and Krebs/TCA cycle","Electron-transport chain and oxidative phosphorylation","ATP yield, amphibolic pathways, and respiratory quotient"],
+    "Botany|Plant Growth & Development":["Seed germination and conditions for growth","Growth phases, measurement, and growth rate","Differentiation, dedifferentiation, and redifferentiation","Auxin, gibberellin, cytokinin, ethylene, and ABA"],
+    "Botany|Sexual Reproduction in Flowering Plants":["Flower structure and male/female gametophyte development","Pollination, outbreeding devices, and pollen-pistil interaction","Double fertilization and embryo/endosperm development","Seed/fruit formation, apomixis, parthenocarpy, and polyembryony"],
+    "Botany|Principles of Inheritance":["Mendel’s laws and monohybrid/dihybrid crosses","Incomplete dominance, codominance, multiple alleles, and blood groups","Chromosome theory, linkage, crossing over, and sex determination","Sex-linked, Mendelian, and chromosomal disorders"],
+    "Botany|Molecular Basis of Inheritance":["Evidence for DNA as genetic material and DNA/RNA structure","DNA packaging, replication, and central dogma","Transcription, genetic code, translation, and protein synthesis","Gene regulation, lac operon, Human Genome Project, and DNA fingerprinting"],
+    "Botany|Biotechnology and Its Applications":["Recombinant DNA technology and genetic engineering","Insulin, vaccines, and gene therapy","Bt crops, transgenic animals, and agricultural uses","Biosafety, biopiracy, and patents"],
+    "Botany|Ecology":["Organisms and environment; adaptations","Population attributes, growth, and age distribution","Interactions: mutualism, competition, predation, and parasitism","Ecosystem structure, productivity, decomposition, energy flow, and pyramids"],
+    "Botany|Biodiversity":["Biodiversity patterns and importance","Causes and consequences of biodiversity loss","Conservation: in-situ and ex-situ approaches","Hotspots, Red Data Book, parks, sanctuaries, and sacred groves"],
+    "Zoology|Animal Kingdom":["Basis of classification: symmetry, layers, coelom, and segmentation","Non-chordate phyla and their identifying features","Chordate characteristics and major classes","Representative examples and distinguishing adaptations"],
+    "Zoology|Structural Organisation in Animals":["Animal tissues: epithelial, connective, muscular, and neural","Frog morphology and organ systems","Digestive, circulatory, respiratory, and excretory organization","Nervous and reproductive systems; practical identification"],
+    "Zoology|Human Physiology":["Organization and coordination of major human organ systems","Digestion, absorption, and nutrient processing","Respiration, circulation, and transport of materials","Excretion, neural/endocrine regulation, and homeostasis"],
+    "Zoology|Digestion & Absorption":["Human digestive tract and associated glands","Digestive enzymes and digestion of food components","Absorption and assimilation of nutrients","Digestive-system disorders and nutrition basics"],
+    "Zoology|Breathing & Exchange of Gases":["Human respiratory organs and mechanics of breathing","Alveolar gas exchange and transport of O2/CO2","Control of respiration and respiratory volumes","Asthma, emphysema, and occupational disorders"],
+    "Zoology|Body Fluids & Circulation":["Blood components, groups, and coagulation","Lymph and its functions","Heart, vessels, cardiac cycle, ECG, and double circulation","Cardiac regulation and circulatory disorders"],
+    "Zoology|Excretory Products":["Ammonotelism, ureotelism, and uricotelism","Kidney structure, nephron, and urine formation","Osmoregulation and hormonal control of kidney function","Renal disorders, dialysis, and artificial kidney"],
+    "Zoology|Locomotion & Movement":["Ciliary, flagellar, and muscular movement","Skeletal muscle structure and contraction","Human skeleton, joints, and movement","Myasthenia, tetany, dystrophy, arthritis, osteoporosis, and gout"],
+    "Zoology|Neural Control":["Neuron structure and nerve impulse conduction","Central, peripheral, and autonomic nervous systems","Synapses and reflex actions","Sensory reception and neural coordination"],
+    "Zoology|Chemical Coordination":["Endocrine glands and hormone classes","Pituitary, thyroid, parathyroid, and pineal glands","Adrenal, pancreas, and gonadal hormones","Hormone action, feedback, and common hypo-/hyperactivity disorders"],
+    "Zoology|Human Reproduction":["Male/female reproductive systems and gonad anatomy","Spermatogenesis, oogenesis, and menstrual cycle","Fertilization, early embryo, implantation, and placenta","Pregnancy, parturition, and lactation"],
+    "Zoology|Reproductive Health":["Reproductive health and sexually transmitted infections","Contraceptive methods and birth control","MTP, amniocentesis, and ethical awareness","Infertility and ART: IVF, ZIFT, and GIFT"],
+    "Zoology|Evolution":["Origin of life and evidence for evolution","Darwin, modern synthesis, and natural selection","Mutation, recombination, gene flow, drift, and Hardy-Weinberg principle","Adaptive radiation and human evolution"],
+    "Zoology|Human Health & Disease":["Pathogens and transmission of major human diseases","Immunity, immune response, and vaccines","Cancer, HIV/AIDS, and common infections","Adolescence, substance misuse, and disease prevention"],
+    "Zoology|Microbes in Human Welfare":["Microbes in household food processing","Industrial products and fermentation","Sewage treatment and biogas/energy generation","Biocontrol agents and biofertilizers"]
+  };
   return pageShell("Syllabus","Physics · Chemistry · Botany · Zoology — check off topics as you cover them.",`
-  <div class="notice">NTA/NMC hasn't officially released the NEET 2027 syllabus yet. This tracker uses a current structure carried over from the latest available syllabus. Re-check chapter names against the official PDF when it is released.</div>
+  <div class="notice">The official NEET UG 2027 syllabus has not been released yet. These chapter topics follow the latest official <a href="https://nta.ac.in/Download/Notice/Notice_20260108180635.pdf" target="_blank" rel="noopener">NMC NEET UG 2026 syllabus</a>; check the 2027 notice for changes when it is published.</div>
   <div class="subject-grid">${Object.entries(subjects).map(([s,a])=>`<button class="subject ${s===currentSubject?"selected":""}" data-subject="${s}"><b>${s}</b><small>${a.filter(x=>checked[s+"-"+x]).length}/${a.length} · ${Math.round(a.filter(x=>checked[s+"-"+x]).length/a.length*100)}%</small><div class="progress" style="margin-top:12px;height:5px"><i style="width:${a.filter(x=>checked[s+"-"+x]).length/a.length*100}%"></i></div></button>`).join("")}</div>
-  <div class="list">${list.map((x,i)=>`<label class="chapter"><input type="checkbox" data-check="${currentSubject}-${x}" ${checked[currentSubject+"-"+x]?"checked":""}><b>${x}</b><span class="arrow">0/4 ›</span></label>`).join("")}</div>`);
+  <div class="list">${list.map((x)=>{
+    const chapterKey=currentSubject+"|"+x,parts=detailedSubtopics[chapterKey]||[],done=parts.filter((_,i)=>checkedSubtopics[chapterKey+"|"+i]).length,isOpen=!!expandedSyllabusChapters[chapterKey];
+    return `<div class="chapter-entry"><div class="chapter"><input type="checkbox" aria-label="Mark ${x} complete" data-check="${currentSubject}-${x}" ${checked[currentSubject+"-"+x]?"checked":""}><button type="button" class="chapter-expand" data-chapter-toggle="${chapterKey}" aria-expanded="${isOpen}"><b>${x}</b><span class="arrow">${done}/${parts.length} <span aria-hidden="true">${isOpen?"⌄":"›"}</span></span></button></div><div class="chapter-subtopics" ${isOpen?"":"hidden"}><div class="subtopics-title">Chapter topics</div>${parts.map((part,i)=>`<label class="subtopic"><input type="checkbox" data-subtopic-check="${chapterKey}|${i}" ${checkedSubtopics[chapterKey+"|"+i]?"checked":""}><span>${part}</span></label>`).join("")}</div></div>`;
+  }).join("")}</div>`);
 }
 function timerPage(){
   return pageShell("Study Timer","Pick a subject and track how long you study it.",`
@@ -447,7 +681,7 @@ function addTarget(text){
   targets[key].push({text:text.trim(),done:false});
   saveTargets(); render("calendar");
 }
-let leaderboardRows=[],leaderboardError="",leaderboardLoading=false,leaderboardPoll=null,activePage="dashboard";
+let leaderboardRows=[],leaderboardError="",leaderboardLoading=false,leaderboardPoll=null,activePage="dashboard",portalCleanup=null,launchFrame=0,launchProfilePrompted=false;
 function leaderboardTable(){
   if(!window.neetGoogleUser)return `<div class="empty">Sign in with Google to join the live leaderboard. Your name and saved study hours will be visible to other signed-in students.</div>`;
   if(leaderboardLoading&&!leaderboardRows.length)return `<div class="empty">Loading the live rankings…</div>`;
@@ -1091,7 +1325,8 @@ function applyProfile(){
   const brand=document.querySelector("#brandUser"); if(brand) brand.textContent=name+"'s Study Hub";
   const cn=document.querySelector("#communityName"); if(cn) cn.textContent=name;
   ["#sideAvatar","#communityAvatar",".hero-avatar"].forEach(sel=>document.querySelectorAll(sel).forEach(e=>e.textContent=initials(name)));
-  const input=document.querySelector("#profileNameInput"); if(input) input.value=name==="Student"?"":name;
+  refreshLaunchIdentity();
+    const input=document.querySelector("#profileNameInput"); if(input) input.value=name==="Student"?"":name;
   const targetInput=document.querySelector("#profileTargetInput"); if(targetInput) targetInput.value=target;
 }
 function showProfileSetup(){
@@ -1106,7 +1341,70 @@ function saveProfileSetup(){
   applyProfile(); render("dashboard");
 }
 
+function bindPortal(){
+  const runway=document.querySelector("#neetPortalRunway"),stage=document.querySelector("#neetPortalStage"),word=document.querySelector("#neetPortalWord"),reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
+  if(!runway||!stage||!word)return null;
+  let selected=1,frame=0;
+  const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
+  function chooseLetter(index){
+    selected=index;
+    document.querySelectorAll("[data-portal-letter]").forEach(el=>el.classList.toggle("is-focused",Number(el.dataset.portalLetter)===index));
+    document.querySelectorAll("[data-portal-focus]").forEach(btn=>btn.setAttribute("aria-pressed",String(Number(btn.dataset.portalFocus)===index)));
+    const letter=word.querySelector(`[data-portal-letter="${index}"]`),wordRect=word.getBoundingClientRect(),rect=letter.getBoundingClientRect();
+    word.style.transformOrigin=`${rect.left+rect.width/2-wordRect.left}px ${rect.top+rect.height/2-wordRect.top}px`;
+  }
+  function update(){
+    frame=0;
+    if(reduceMotion.matches){stage.style.setProperty("--portal-progress","1");stage.style.setProperty("--portal-zoom","1");stage.style.setProperty("--portal-word-opacity","0");stage.style.setProperty("--portal-scene-opacity","1");return}
+    const rect=runway.getBoundingClientRect(),travel=runway.offsetHeight-window.innerHeight,p=clamp(-rect.top/Math.max(1,travel),0,1);
+    stage.style.setProperty("--portal-progress",p.toFixed(4));stage.style.setProperty("--portal-zoom",(1+p*17).toFixed(3));stage.style.setProperty("--portal-word-opacity",(1-clamp((p-.2)/.47,0,1)).toFixed(3));stage.style.setProperty("--portal-scene-opacity",clamp((p-.4)/.24,0,1).toFixed(3));
+  }
+  const requestUpdate=()=>{if(!frame)frame=requestAnimationFrame(update)};
+  const focusButtons=Array.from(document.querySelectorAll("[data-portal-focus]"));
+  focusButtons.forEach(btn=>btn.addEventListener("click",()=>chooseLetter(Number(btn.dataset.portalFocus))));
+  window.addEventListener("scroll",requestUpdate,{passive:true});window.addEventListener("resize",requestUpdate);
+  const replay=document.querySelector("#neetPortalReplay");if(replay)replay.addEventListener("click",()=>runway.scrollIntoView({behavior:reduceMotion.matches?"auto":"smooth",block:"start"}));
+  chooseLetter(selected);update();
+  return ()=>{window.removeEventListener("scroll",requestUpdate);window.removeEventListener("resize",requestUpdate);focusButtons.forEach(btn=>btn.replaceWith(btn.cloneNode(true)));if(frame)cancelAnimationFrame(frame)};
+}
+
+function refreshLaunchIdentity(){
+  const user=window.neetGoogleUser;
+  const name=(user?.user_metadata?.full_name||user?.user_metadata?.name||profile?.name||user?.email||"Student").trim();
+  const nameEl=document.querySelector("#launchStudentName"),avatar=document.querySelector("#launchStudentAvatar"),hours=document.querySelector("#launchStudentHours");
+  if(nameEl)nameEl.textContent=name;
+  if(avatar)avatar.textContent=initials(name);
+  if(hours)hours.textContent=totalStudy().toFixed(1)+" h";
+}
+function bindLaunchExperience(){
+  const runways=[...document.querySelectorAll("[data-launch-runway]")],app=document.querySelector(".app"),reduce=window.matchMedia("(prefers-reduced-motion: reduce)");
+  if(!runways.length||!app)return;
+  const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
+  function update(){
+    launchFrame=0;
+    runways.forEach(runway=>{
+      const stage=runway.querySelector("[data-launch-stage]"),word=runway.querySelector("[data-launch-word]");if(!stage||!word)return;
+      if(reduce.matches){stage.style.setProperty("--launch-progress","1");stage.style.setProperty("--launch-zoom","1");stage.style.setProperty("--launch-word-opacity","0");stage.style.setProperty("--launch-scene-opacity","1");return}
+      const rect=runway.getBoundingClientRect(),travel=runway.offsetHeight-window.innerHeight,p=clamp(-rect.top/Math.max(1,travel),0,1);
+      stage.style.setProperty("--launch-progress",p.toFixed(4));stage.style.setProperty("--launch-zoom",(1+p*17).toFixed(3));stage.style.setProperty("--launch-word-opacity",(1-clamp((p-.2)/.47,0,1)).toFixed(3));stage.style.setProperty("--launch-scene-opacity",clamp((p-.4)/.24,0,1).toFixed(3));
+    });
+    const showingApp=app.getBoundingClientRect().top<=1;document.body.classList.toggle("intro-active",!showingApp);
+    if(showingApp&&!profile&&!window.neetGoogleUser&&!launchProfilePrompted){launchProfilePrompted=true;setTimeout(showProfileSetup,250)}
+    refreshLaunchIdentity();
+  }
+  const requestUpdate=()=>{if(!launchFrame)launchFrame=requestAnimationFrame(update)};
+  window.addEventListener("scroll",requestUpdate,{passive:true});window.addEventListener("resize",requestUpdate);
+  document.querySelectorAll("[data-launch-focus]").forEach(btn=>btn.addEventListener("click",()=>{
+    const index=Number(btn.dataset.launchFocus),runway=btn.closest("[data-launch-runway]"),word=runway?.querySelector("[data-launch-word]");if(!word)return;
+    word.querySelectorAll("[data-launch-letter]").forEach(el=>el.classList.toggle("is-focused",Number(el.dataset.launchLetter)===index));
+    runway.querySelectorAll("[data-launch-focus]").forEach(el=>el.setAttribute("aria-pressed",String(el===btn)));
+    const letter=word.querySelector('[data-launch-letter="'+index+'"]'),wr=word.getBoundingClientRect(),lr=letter.getBoundingClientRect();word.style.transformOrigin=(lr.left+lr.width/2-wr.left)+"px "+(lr.top+lr.height/2-wr.top)+"px";
+  }));
+  document.querySelectorAll("[data-launch-skip]").forEach(btn=>btn.addEventListener("click",()=>app.scrollIntoView({behavior:reduce.matches?"auto":"smooth",block:"start"})));
+  update();
+}
 function render(page="dashboard"){
+  if(portalCleanup){portalCleanup();portalCleanup=null}
   activePage=page;
   document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
   const primaryPages=["dashboard","practice","timer","syllabus"];
@@ -1114,7 +1412,7 @@ function render(page="dashboard"){
   const moreButton=document.querySelector("#mobileMoreButton"),morePanel=document.querySelector("#mobileMorePanel");
   if(moreButton){moreButton.classList.toggle("active",!primaryPages.includes(page));moreButton.setAttribute("aria-expanded","false")}
   if(morePanel)morePanel.classList.remove("open");
-  const pages={dashboard,syllabus,practice,timer:timerPage,leaderboard,calendar,reports,mock,mockRun:()=>mockTestPage(mockState?.id||"full"),community,aboutCreator};
+  const pages={dashboard,portal:portalPage,syllabus,practice,timer:timerPage,leaderboard,calendar,reports,mock,mockRun:()=>mockTestPage(mockState?.id||"full"),community,aboutCreator};
   document.querySelector("#main").innerHTML=pages[page]();
   bind(page);
   bindTheme();
@@ -1123,6 +1421,7 @@ function render(page="dashboard"){
 }
 function bind(page){
   if(page==="dashboard") startCountdown();
+  if(page==="portal")portalCleanup=bindPortal();
   const mobileMenuButton=document.querySelector("#mobileMenuToggle");
   if(mobileMenuButton)mobileMenuButton.onclick=()=>{
     const sidebar=document.querySelector(".sidebar"),open=sidebar.classList.toggle("mobile-menu-open");
@@ -1141,6 +1440,8 @@ function bind(page){
   document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>{document.querySelector(".sidebar")?.classList.remove("mobile-menu-open");const menuButton=document.querySelector("#mobileMenuToggle");if(menuButton){menuButton.setAttribute("aria-expanded","false");menuButton.setAttribute("aria-label","Open menu");menuButton.textContent="☰"}document.querySelector("#mobileMorePanel")?.classList.remove("open");render(b.dataset.page)});
   document.querySelectorAll("[data-subject]").forEach(b=>b.onclick=()=>{currentSubject=b.dataset.subject;render("syllabus")});
   document.querySelectorAll("[data-check]").forEach(c=>c.onchange=()=>{checked[c.dataset.check]=c.checked;localStorage.setItem("neetChecked",JSON.stringify(checked));render("syllabus")});
+  document.querySelectorAll("[data-chapter-toggle]").forEach(button=>button.onclick=()=>{const key=button.dataset.chapterToggle;expandedSyllabusChapters[key]=!expandedSyllabusChapters[key];localStorage.setItem("neetExpandedChapters",JSON.stringify(expandedSyllabusChapters));render("syllabus")});
+  document.querySelectorAll("[data-subtopic-check]").forEach(input=>input.onchange=()=>{checkedSubtopics[input.dataset.subtopicCheck]=input.checked;localStorage.setItem("neetSubtopics",JSON.stringify(checkedSubtopics));render("syllabus")});
   if(page==="practice"){
     document.querySelector("#practiceSubject").onchange=e=>{practiceSubject=e.target.value;practiceTopic=subjects[practiceSubject][0];practiceReset();render("practice")};
     document.querySelector("#practiceTopic").onchange=e=>{practiceTopic=e.target.value;practiceReset();render("practice")};
@@ -1195,8 +1496,9 @@ function startCountdown(){
  const target=new Date("2027-05-02T10:00:00+05:30");
  const tick=()=>{let d=Math.max(0,target-Date.now()),days=Math.floor(d/86400000);d%=86400000;let h=Math.floor(d/3600000);d%=3600000;let m=Math.floor(d/60000);let s=Math.floor(d/1000)%60;el.innerHTML=`<div><strong>${days}</strong><small>days</small></div><div><strong>${h}</strong><small>hrs</small></div><div><strong>${m}</strong><small>min</small></div><div><strong>${s}</strong><small>sec</small></div>`};tick();setInterval(tick,1000)
 }
+if(localStorage.getItem("neetTheme")==="light")localStorage.setItem("neetTheme","dark");
 render();
-if(!profile) setTimeout(showProfileSetup,250);
+bindLaunchExperience();
 const saveProfileBtn=document.querySelector("#saveProfile");
 if(saveProfileBtn) saveProfileBtn.onclick=saveProfileSetup;
 
@@ -1219,6 +1521,7 @@ if(saveProfileBtn) saveProfileBtn.onclick=saveProfileSetup;
   };
   window.updateGoogleLoginDisplay=(user)=>{
     window.neetGoogleUser=user||null;
+      if(typeof refreshLaunchIdentity==="function")refreshLaunchIdentity();
     const mobileButton=document.querySelector("#mobileGoogleAuthButton");
     if(button)button.textContent=user?"Sign out":"Continue with Google";
     if(mobileButton)mobileButton.innerHTML=`<span>◎</span>${user?"Sign out":"Continue with Google"}`;
