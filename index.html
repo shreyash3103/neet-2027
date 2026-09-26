@@ -159,6 +159,94 @@ body.light .profile-setup{background:rgba(15,20,28,.35)}body.light .setup-card{b
 @media(max-width:700px){.creator-grid{grid-template-columns:1fr}.creator-mini-card{flex-wrap:wrap}.creator-mini-card .btn{width:100%}}
 </style>
 
+<style>
+/* Phone layout: compact left navigation rail and single-column study content. */
+.mobile-menu-toggle{display:none}
+@media(max-width:600px){
+  html,body{width:100%;overflow-x:hidden}
+  .app{display:block;min-height:100vh}
+  .sidebar{display:flex;flex-direction:column;align-items:stretch;gap:4px;position:fixed;left:0;top:0;bottom:0;width:64px;padding:8px 4px calc(8px + env(safe-area-inset-bottom));overflow-x:hidden;overflow-y:auto;z-index:20;border-right:1px solid #20242a;box-shadow:3px 0 16px rgba(0,0,0,.12)}
+  .brand-wrap{display:flex;justify-content:center;min-width:0;margin:0 0 2px;padding:0}
+  .brand-wrap>div:not(.brand-logo){display:none}
+  .brand-logo{width:28px;height:28px;flex:0 0 28px;border-radius:8px;font-size:14px}
+  .mobile-menu-toggle{display:none}
+  .sidebar nav,.sidebar.mobile-menu-open nav{display:flex;flex-direction:column;align-items:stretch;gap:4px;width:100%;margin:0;padding:0;border:0;overflow:visible}
+  .nav-item{width:100%;min-width:0;min-height:41px;flex:0 0 auto;display:flex;flex-direction:column;justify-content:center;gap:2px;margin:0;padding:4px 1px;border-radius:7px;font-size:7px;line-height:1;text-align:center;white-space:normal;overflow-wrap:anywhere}
+  .nav-item span{display:block;width:auto;flex:0 0 auto;font-size:14px;line-height:1}
+  .sidebar-profile,.google-auth-status{display:none}
+  #googleAuthButton{display:block;width:100%;margin:3px 0 0;padding:6px 1px;font-size:7px;line-height:1.1;white-space:normal;overflow-wrap:anywhere}
+  .theme-toggle{display:block;margin:auto 0 0;padding:7px 0 0;border-top:1px solid #252a31}
+  .theme-toggle button{width:100%;padding:5px 1px;flex-direction:column;gap:2px;font-size:7px;line-height:1}
+  .privacy-link{display:block;margin:2px 0 0;padding:2px 0;font-size:7px;line-height:1.1;overflow-wrap:anywhere}
+  main{width:calc(100% - 64px);min-width:0;max-width:none;margin-left:64px;padding:18px 10px calc(24px + env(safe-area-inset-bottom))}
+  h1{font-size:24px;line-height:1.2}
+  h2{font-size:19px;margin:22px 0 12px}
+  .subtitle{font-size:14px;line-height:1.5;margin-bottom:18px}
+  .card{padding:15px;border-radius:12px}
+  .countdown{gap:4px;margin-top:12px}
+  .countdown strong{font-size:23px}
+  .countdown small{font-size:11px}
+  .stats-card{flex-direction:row;align-items:center;gap:12px}
+  .donut{width:88px;height:88px;align-self:center}
+  .donut:after{width:62px;height:62px}
+  .donut-label{font-size:14px}
+  .legend-row{gap:6px;margin:9px 0;font-size:12px}
+  .legend-row .hours{font-size:12px}
+  .subject-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:16px 0}
+  .subject{min-width:0;padding:13px 10px;overflow-wrap:anywhere}
+  .chapter{gap:10px;padding:14px 12px;font-size:14px}
+  .chapter input{width:19px;height:19px;flex:0 0 auto}
+  .tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:22px}
+  .tab{padding:10px 7px;font-size:13px}
+  .clock{font-size:clamp(38px,13vw,52px);margin:8px 0 20px}
+  .actions{grid-template-columns:1fr 1fr;gap:9px}
+  .actions .btn{padding:12px 8px;font-size:14px}
+  .actions #discard{grid-column:1/-1}
+  .calendar-wrap{gap:12px}
+  .calendar-head{align-items:flex-start;flex-wrap:wrap;margin-bottom:10px}
+  .calendar-head h2{font-size:17px}
+  .month-nav{gap:5px}
+  .month-nav button{padding:7px 8px;font-size:12px}
+  .calendar-grid{grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+  .weekday{font-size:10px;padding:4px 0}
+  .calendar-date{min-width:0;min-height:68px;padding:6px 4px;border-radius:7px}
+  .date-number{font-size:12px}
+  .target-count{right:4px;top:4px;font-size:9px}
+  .mini-target{font-size:9px;margin-top:5px}
+  .calendar-editor{grid-template-columns:minmax(0,1fr);gap:12px}
+  .target-input{align-items:stretch}
+  .target-input button{padding:0 12px}
+  .practice-controls{grid-template-columns:minmax(0,1fr);gap:10px}
+  .practice-progress{font-size:12px}
+  .practice-question{font-size:17px;line-height:1.45}
+  .practice-option{padding:12px;font-size:14px}
+  .practice-footer{align-items:stretch}
+  .practice-footer .btn{width:100%}
+  .table th,.table td{padding:10px 8px;font-size:13px}
+  .personal-hero{padding:16px;gap:10px}
+  .personal-hero h1{font-size:21px}
+  .hero-avatar{width:46px;height:46px;flex:0 0 46px;font-size:19px}
+  .feature-grid,.community-grid,.creator-grid{grid-template-columns:minmax(0,1fr)}
+  .form-grid{grid-template-columns:minmax(0,1fr)}
+  .streak-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .streak-stats div{min-width:0;padding:10px 5px}
+  .streak-stats b{font-size:19px}
+  .streak-stats span{font-size:10px}
+  .mock-test-layout{grid-template-columns:minmax(0,1fr)}
+  .mock-side-panel{position:static}
+  .question-nav{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .setup-card{width:min(440px,calc(100vw - 24px));padding:22px}
+}
+@media(max-width:380px){
+  .sidebar{width:58px;padding-left:3px;padding-right:3px}
+  main{width:calc(100% - 58px);margin-left:58px;padding-left:9px;padding-right:9px}
+  .nav-item{font-size:6.5px}
+  .card{padding:12px}
+  .streak-stats span{font-size:9px}
+}
+body.light .sidebar{box-shadow:0 5px 18px rgba(31,45,61,.08)}
+</style>
+
 </head>
 <body>
 <div id="profileSetup" class="profile-setup" style="display:none">
@@ -175,11 +263,12 @@ body.light .profile-setup{background:rgba(15,20,28,.35)}body.light .setup-card{b
 
   <div class="app">
     <aside class="sidebar">
-      <div class="brand-wrap">
+    <div class="brand-wrap">
       <div class="brand-logo">S</div>
       <div><div class="brand">NEET 2027</div><div class="brand-user" id="brandUser">My Study Hub</div></div>
     </div>
-      <nav>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-expanded="false" aria-controls="siteNavigation" aria-label="Open menu">☰</button>
+      <nav id="siteNavigation">
         <button class="nav-item active" data-page="dashboard"><span>▦</span>Dashboard</button>
         <button class="nav-item" data-page="syllabus"><span>▣</span>Syllabus</button>
         <button class="nav-item" data-page="practice"><span>✎</span>Topic Practice</button>
@@ -999,13 +1088,20 @@ function render(page="dashboard"){
 }
 function bind(page){
   if(page==="dashboard") startCountdown();
+  const mobileMenuButton=document.querySelector("#mobileMenuToggle");
+  if(mobileMenuButton)mobileMenuButton.onclick=()=>{
+    const sidebar=document.querySelector(".sidebar"),open=sidebar.classList.toggle("mobile-menu-open");
+    mobileMenuButton.setAttribute("aria-expanded",String(open));
+    mobileMenuButton.setAttribute("aria-label",open?"Close menu":"Open menu");
+    mobileMenuButton.textContent=open?"×":"☰";
+  };
   if(page==="leaderboard"){
     clearInterval(leaderboardPoll);loadLeaderboard();
     leaderboardPoll=setInterval(loadLeaderboard,15000);
     const refresh=document.querySelector("#leaderboardRefresh");if(refresh)refresh.onclick=loadLeaderboard;
     const retry=document.querySelector("#leaderboardRetry");if(retry)retry.onclick=loadLeaderboard;
   }else clearInterval(leaderboardPoll);
-  document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>render(b.dataset.page));
+  document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>{document.querySelector(".sidebar")?.classList.remove("mobile-menu-open");const menuButton=document.querySelector("#mobileMenuToggle");if(menuButton){menuButton.setAttribute("aria-expanded","false");menuButton.setAttribute("aria-label","Open menu");menuButton.textContent="☰"}render(b.dataset.page)});
   document.querySelectorAll("[data-subject]").forEach(b=>b.onclick=()=>{currentSubject=b.dataset.subject;render("syllabus")});
   document.querySelectorAll("[data-check]").forEach(c=>c.onchange=()=>{checked[c.dataset.check]=c.checked;localStorage.setItem("neetChecked",JSON.stringify(checked));render("syllabus")});
   if(page==="practice"){
