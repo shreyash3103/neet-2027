@@ -93,12 +93,87 @@ body.light .hero-note{color:#11845a}
 body.light .theme-toggle{border-color:#dfe4ea}
 body.light .theme-toggle button{background:#fff;border-color:#dfe4ea;color:#465366}
 
+
+.community-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:18px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}
+.section-head h2{margin:0 0 6px}.streak-badge{background:rgba(240,165,83,.12);border:1px solid rgba(240,165,83,.35);border-radius:12px;padding:9px 12px;font-weight:800;text-align:center;color:#f0a553}.streak-badge small{display:block;font-weight:600;color:#98a3b3;margin-top:2px}
+.streak-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}.streak-stats div{padding:14px;border:1px solid #292e35;border-radius:10px;background:#111419;text-align:center}.streak-stats b{display:block;font-size:22px}.streak-stats span{font-size:12px;color:#8d98a8}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card label{display:block;font-size:13px;font-weight:700;margin:12px 0;color:#cbd3df}.card input,.card select,.card textarea{display:block;width:100%;box-sizing:border-box;margin-top:7px;border:1px solid #303640;background:#0f1217;color:#eef2f7;border-radius:9px;padding:11px 12px;font:inherit;outline:none}.card textarea{min-height:84px;resize:vertical}
+.discussion-compose{border-bottom:1px solid #292e35;padding-bottom:18px;margin-bottom:18px}.discussion-list{display:grid;gap:10px;max-height:520px;overflow:auto}.discussion-post{padding:14px!important}.post-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.discussion-post p{line-height:1.5;margin:10px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+body.light .streak-stats div{background:#fff;border-color:#dfe4ea}body.light .card input,body.light .card select,body.light .card textarea{background:#fff;color:#17202b;border-color:#d5dbe3}body.light .discussion-compose{border-color:#dfe4ea}
+@media(max-width:900px){.community-grid{grid-template-columns:1fr}}@media(max-width:560px){.form-grid{grid-template-columns:1fr}.streak-stats{grid-template-columns:1fr}}
+
+.brand-wrap{display:flex;align-items:center;gap:10px;margin-bottom:22px}.brand-wrap .brand{margin:0}.brand-user{font-size:10px;color:#778396;margin-top:2px}.brand-logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#5b8def,#7d5bea);color:#fff;font-weight:900;box-shadow:0 8px 20px rgba(91,141,239,.2)}
+.sidebar-profile{display:flex;align-items:center;gap:10px;margin:20px 4px 0;padding:12px;border:1px solid #292e35;background:#111419;border-radius:12px}.profile-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#5b8def;color:#fff;font-weight:900}.sidebar-profile strong{display:block;font-size:13px}.sidebar-profile span{display:block;color:#7f8a9c;font-size:10px;margin-top:2px}
+.personal-hero{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 26px;margin-bottom:18px;border-radius:16px;border:1px solid #2d3541;background:linear-gradient(135deg,rgba(91,141,239,.16),rgba(125,91,234,.08));box-shadow:0 12px 30px rgba(0,0,0,.12)}.personal-hero h1{margin:5px 0 7px;font-size:28px;letter-spacing:-.5px}.personal-hero p{margin:0;color:#9ba6b6}.eyebrow{font-size:11px;letter-spacing:1.6px;font-weight:800;color:#6f9cf2}.hero-avatar{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;font-size:25px;font-weight:900;color:#fff;background:linear-gradient(135deg,#5b8def,#7d5bea);box-shadow:0 10px 25px rgba(91,141,239,.22)}
+.identity-strip{display:flex;align-items:center;gap:12px;padding:12px 14px;margin-bottom:16px;border:1px solid #292e35;background:#111419;border-radius:12px}.identity-avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#5b8def;color:#fff;font-weight:900}.identity-strip strong{display:block}.identity-strip span{display:block;color:#7f8a9c;font-size:11px;margin-top:2px}.identity-chip{margin-left:auto;padding:7px 10px;border-radius:20px;background:rgba(73,189,121,.1);color:#62d294;font-size:11px;font-weight:800}
+body.light .sidebar-profile,body.light .identity-strip{background:#fff;border-color:#dfe4ea}.personal-hero{border-color:#dfe4ea}.personal-hero p{color:#687589}
+@media(max-width:600px){.personal-hero{padding:18px}.personal-hero h1{font-size:22px}.hero-avatar{width:50px;height:50px}.identity-chip{display:none}}
+
+.profile-setup{position:fixed;inset:0;z-index:9999;background:rgba(4,7,11,.82);backdrop-filter:blur(8px);place-items:center;padding:20px}.setup-card{width:min(430px,100%);background:#171b21;border:1px solid #303743;border-radius:20px;padding:30px;box-shadow:0 25px 70px rgba(0,0,0,.45)}.setup-logo{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#5b8def,#7d5bea);color:#fff;font-size:24px;font-weight:900;margin-bottom:18px}.setup-card h1{margin:6px 0 8px;font-size:25px}.setup-card p{color:#8f9aaa;line-height:1.5;margin:0 0 18px}.setup-card label{display:block;font-size:13px;font-weight:700;margin:13px 0;color:#cbd3df}.setup-card input,.setup-card select{display:block;width:100%;box-sizing:border-box;margin-top:7px;border:1px solid #303640;background:#0f1217;color:#eef2f7;border-radius:9px;padding:12px;font:inherit}.setup-card .btn{width:100%;margin-top:10px}.eyebrow{font-size:11px;letter-spacing:1.6px;font-weight:800;color:#6f9cf2}
+body.light .profile-setup{background:rgba(15,20,28,.35)}body.light .setup-card{background:#fff;border-color:#dfe4ea}body.light .setup-card input,body.light .setup-card select{background:#fff;color:#17202b;border-color:#d5dbe3}
 </style>
+
+<style>
+.mock-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.mock-card{position:relative}
+.mock-badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:5px 8px;border-radius:999px;background:rgba(91,141,239,.12);color:#5b8def;margin-bottom:8px}
+.mock-syllabus{margin:16px 0;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--soft)}
+.mock-syllabus h3{margin:0 0 10px;font-size:14px}
+.mock-syllabus-group{margin:9px 0}.mock-syllabus-group strong{display:block;margin-bottom:6px;font-size:12px}
+.mock-syllabus-group .tag{display:inline-block;margin:3px 4px 3px 0;font-size:10px}
+.mock-actions{display:flex;gap:9px;flex-wrap:wrap}
+.mock-rules{margin-top:18px}.mock-rule-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.mock-rule-grid div{display:flex;align-items:center;gap:9px;padding:12px;border:1px solid var(--border);border-radius:10px}.mock-rule-grid b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#5b8def;color:#fff}.mock-rule-grid span{font-size:12px}
+.mock-results{display:grid;gap:8px}.mock-result-row{display:grid;grid-template-columns:1fr auto auto;gap:15px;padding:10px 0;border-bottom:1px solid var(--border)}.mock-result-row small{color:var(--muted)}
+.mock-test-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;position:sticky;top:0;z-index:5;padding:10px 0;background:var(--bg)}
+.mock-live-timer{font-size:20px;font-weight:800}
+.mock-test-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:18px;align-items:start}
+.mock-paper{display:grid;gap:14px}
+.mock-question{padding:18px;border:1px solid var(--border);border-radius:14px;background:var(--panel)}
+.question-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.mock-question h3{font-size:17px;line-height:1.45;margin:8px 0 14px}
+.options{display:grid;gap:8px}.options label{display:flex;gap:10px;align-items:flex-start;padding:11px;border:1px solid var(--border);border-radius:10px;cursor:pointer}.options label:hover,.options label.selected{border-color:#5b8def;background:rgba(91,141,239,.07)}.options input{margin-top:3px}
+.mock-side-panel{position:sticky;top:75px}.mock-side-panel hr{border:0;border-top:1px solid var(--border);margin:18px 0}.question-nav{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.question-nav button{border:1px solid var(--border);background:var(--panel);border-radius:8px;padding:8px;cursor:pointer}.question-nav button.answered{background:#5b8def;color:#fff;border-color:#5b8def}.big-submit{width:100%;margin-top:5px}
+.result-hero{text-align:center}.result-score{font-size:64px;font-weight:900;line-height:1}.result-score small{font-size:28px}.mock-breakdown-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}.review-item{padding:13px;margin:8px 0;border:1px solid var(--border);border-radius:10px}.review-item.correct{border-left:4px solid #49bd79}.review-item.wrong{border-left:4px solid #e06b6b}.review-item div{margin-top:6px;font-size:13px;color:var(--muted)}
+@media(max-width:900px){.mock-grid,.mock-test-layout{grid-template-columns:1fr}.mock-side-panel{position:static}.mock-rule-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.mock-rule-grid{grid-template-columns:1fr}.mock-test-toolbar{flex-wrap:wrap}.mock-live-timer{order:-1;width:100%;text-align:center}}
+</style>
+
+
+<style>
+.creator-hero{display:flex;align-items:center;gap:18px;margin-bottom:18px;padding:24px}
+.creator-avatar,.creator-mini-avatar{display:grid;place-items:center;border-radius:18px;background:linear-gradient(135deg,#5b8def,#7b61d9);color:#fff;font-weight:900}
+.creator-avatar{width:76px;height:76px;font-size:25px}
+.creator-mini-avatar{width:54px;height:54px;font-size:17px;flex:0 0 auto}
+.creator-kicker{font-size:10px;font-weight:900;letter-spacing:1.4px;opacity:.65;margin-bottom:4px}
+.creator-hero h2{margin:0 0 4px}
+.creator-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.creator-note{display:flex;gap:15px;align-items:flex-start}
+.creator-note-icon{font-size:28px}
+.creator-mini-card{display:flex;align-items:center;gap:14px;margin-top:18px}
+.creator-mini-copy{flex:1}.creator-mini-copy h3{margin:2px 0 3px}.creator-mini-copy p{margin:0;color:var(--muted);font-size:12px}
+@media(max-width:700px){.creator-grid{grid-template-columns:1fr}.creator-mini-card{flex-wrap:wrap}.creator-mini-card .btn{width:100%}}
+</style>
+
 </head>
 <body>
+<div id="profileSetup" class="profile-setup" style="display:none">
+  <div class="setup-card">
+    <div class="setup-logo">N</div>
+    <div class="eyebrow">NEET 2027</div>
+    <h1>Welcome to your study dashboard 🎓</h1>
+    <p>Let's personalize your dashboard. Your name is saved only in this browser.</p>
+    <label>Your name<input id="profileNameInput" placeholder="Enter your name" maxlength="30" autocomplete="name"></label>
+    <label>Daily study target<select id="profileTargetInput"><option>4 hours</option><option>6 hours</option><option selected>8 hours</option><option>10+ hours</option></select></label>
+    <button class="btn primary" id="saveProfile">Continue →</button>
+  </div>
+</div>
+
   <div class="app">
     <aside class="sidebar">
-      <div class="brand">NEET 2027</div>
+      <div class="brand-wrap">
+      <div class="brand-logo">S</div>
+      <div><div class="brand">NEET 2027</div><div class="brand-user" id="brandUser">My Study Hub</div></div>
+    </div>
       <nav>
         <button class="nav-item active" data-page="dashboard"><span>▦</span>Dashboard</button>
         <button class="nav-item" data-page="syllabus"><span>▣</span>Syllabus</button>
@@ -109,6 +184,10 @@ body.light .theme-toggle button{background:#fff;border-color:#dfe4ea;color:#4653
         <button class="nav-item" data-page="mock"><span>◎</span>Mock Tests</button>
         <button class="nav-item" data-page="community"><span>♧</span>Community</button>
       </nav>
+      <div class="sidebar-profile">
+        <div class="profile-avatar" id="sideAvatar">S</div>
+        <div><strong id="sideName">Student</strong><span>NEET 2027 Aspirant</span></div>
+      </div>
       <div class="theme-toggle">
         <button id="themeToggle" type="button">☀️ <span id="themeLabel">Light mode</span></button>
       </div>
@@ -127,6 +206,8 @@ const colors={Physics:"#5b8def",Chemistry:"#b37bea",Botany:"#49bd79",Zoology:"#f
 let currentSubject="Physics", timer=0, running=false, interval=null;
 let checked=JSON.parse(localStorage.getItem("neetChecked")||"{}");
 let sessions=JSON.parse(localStorage.getItem("neetSessions")||"[]");
+let checkins=JSON.parse(localStorage.getItem("neetCheckins")||"{}");
+let discussions=JSON.parse(localStorage.getItem("neetDiscussions")||"[]");
 
 function pageShell(title,sub,body){return `<h1>${title}</h1><div class="subtitle">${sub}</div>${body}`}
 function dashboard(){
@@ -239,9 +320,296 @@ function addTarget(text){
   targets[key].push({text:text.trim(),done:false});
   saveTargets(); render("calendar");
 }
-function leaderboard(){return simplePage("Leaderboard","Track consistency with your study group.",`<section class="card"><table class="table"><tr><th>Student</th><th>Study time</th><th>Sessions</th></tr><tr><td>You</td><td>${totalStudy().toFixed(1)} h</td><td>${sessions.length}</td></tr><tr><td>Study Buddy</td><td>18.4 h</td><td>22</td></tr><tr><td>Focus Champ</td><td>16.9 h</td><td>19</td></tr></table></section>`)}
-function mock(){return simplePage("Mock Tests","Practice under exam-like conditions.",`<div class="feature-grid"><section class="card feature"><h2>NEET Full Test 01</h2><p class="muted">200 questions · 200 minutes</p><button class="btn primary">Start test</button></section><section class="card feature"><h2>Physics Chapter Test</h2><p class="muted">45 questions · 45 minutes</p><button class="btn">View test</button></section></div>`)}
-function community(){return simplePage("Community","Study together and share progress.",`<div class="feature-grid"><section class="card feature"><h2>Daily Check-in</h2><p class="muted">Share today's target and keep your streak visible.</p></section><section class="card feature"><h2>Discussion</h2><p class="muted">Ask doubts, exchange resources, and discuss preparation strategies.</p></section></div>`)}
+function leaderboard(){return simplePage("Leaderboard","Track consistency with your study group.",`<div class="personal-hero">
+  <div>
+    <div class="eyebrow">WELCOME BACK, <span id="welcomeName">STUDENT</span></div>
+    <h1>Your NEET 2027 journey starts here.</h1>
+    <p>Stay consistent, track your preparation, and make today count.</p>
+  </div>
+  <div class="hero-avatar">S</div>
+</div><section class="card"><table class="table"><tr><th>Student</th><th>Study time</th><th>Sessions</th></tr><tr><td>You</td><td>${totalStudy().toFixed(1)} h</td><td>${sessions.length}</td></tr><tr><td>Study Buddy</td><td>18.4 h</td><td>22</td></tr><tr><td>Focus Champ</td><td>16.9 h</td><td>19</td></tr></table></section>`)}
+const mockTests = {
+  full: {
+    title:"NEET Practice Paper 01",
+    duration:20,
+    description:"20-question mixed Physics, Chemistry & Biology practice paper.",
+    syllabus:{
+      Physics:["Units & Measurement","Kinematics","Laws of Motion","Work, Energy & Power"],
+      Chemistry:["Some Basic Concepts of Chemistry","Structure of Atom","Chemical Bonding","Thermodynamics"],
+      Biology:["Cell: Structure & Function","Human Physiology","Plant Physiology","Human Health & Disease"]
+    },
+    questions:[
+      {s:"Physics",q:"A body moves with uniform acceleration. If its velocity changes from 10 m/s to 30 m/s in 5 s, its acceleration is:",o:["2 m/s²","4 m/s²","6 m/s²","8 m/s²"],a:1},
+      {s:"Physics",q:"The SI unit of work is:",o:["Watt","Joule","Newton","Pascal"],a:1},
+      {s:"Physics",q:"A 2 kg object moving at 3 m/s has kinetic energy:",o:["3 J","6 J","9 J","18 J"],a:2},
+      {s:"Physics",q:"Newton's second law relates force to:",o:["Displacement only","Rate of change of momentum","Potential energy","Temperature"],a:1},
+      {s:"Physics",q:"The slope of a velocity-time graph represents:",o:["Distance","Acceleration","Momentum","Force"],a:1},
+      {s:"Chemistry",q:"The number of particles in one mole of a substance is approximately:",o:["6.022 × 10²³","9.8 × 10²","3.14 × 10⁸","1.602 × 10⁻¹⁹"],a:0},
+      {s:"Chemistry",q:"The atomic number of an element equals the number of its:",o:["Neutrons only","Protons","Nucleons","Isotopes"],a:1},
+      {s:"Chemistry",q:"A covalent bond is formed mainly by:",o:["Transfer of electrons","Sharing of electrons","Loss of neutrons","Gain of protons"],a:1},
+      {s:"Chemistry",q:"For an exothermic reaction, heat is:",o:["Absorbed by the system","Released by the system","Always zero","Converted into mass only"],a:1},
+      {s:"Chemistry",q:"The pH of a neutral aqueous solution at 25°C is approximately:",o:["0","5","7","14"],a:2},
+      {s:"Chemistry",q:"The smallest unit retaining the chemical properties of an element is an:",o:["Atom","Ion pair","Molecule of water","Electron shell"],a:0},
+      {s:"Biology",q:"The basic structural and functional unit of life is the:",o:["Tissue","Organ","Cell","Organ system"],a:2},
+      {s:"Biology",q:"Which organelle is commonly called the powerhouse of the cell?",o:["Ribosome","Mitochondrion","Golgi apparatus","Lysosome"],a:1},
+      {s:"Biology",q:"Gas exchange in human lungs primarily occurs in the:",o:["Trachea","Bronchi","Alveoli","Larynx"],a:2},
+      {s:"Biology",q:"The functional unit of the kidney is the:",o:["Neuron","Nephron","Alveolus","Sarcomere"],a:1},
+      {s:"Biology",q:"Photosynthesis mainly occurs in the:",o:["Mitochondria","Chloroplasts","Nucleus","Vacuoles"],a:1},
+      {s:"Biology",q:"Insulin is secreted by the:",o:["Thyroid","Pancreas","Adrenal gland","Pituitary"],a:1},
+      {s:"Biology",q:"DNA is primarily located in the cell's:",o:["Nucleus","Cell wall","Vacuole","Golgi body"],a:0},
+      {s:"Biology",q:"Which blood cells are primarily involved in body defence?",o:["Red blood cells","White blood cells","Platelets","Plasma cells only"],a:1},
+      {s:"Biology",q:"The process by which green plants manufacture food using light energy is:",o:["Respiration","Transpiration","Photosynthesis","Fermentation"],a:2}
+    ]
+  },
+  physics: {
+    title:"Physics Chapter Test",
+    duration:10,
+    description:"10-question practice paper covering Kinematics & Laws of Motion.",
+    syllabus:{Physics:["Units & Measurement","Kinematics","Laws of Motion","Work, Energy & Power"]},
+    questions:[
+      {s:"Physics",q:"The dimensional formula of velocity is:",o:["[LT⁻¹]","[LT⁻²]","[MLT⁻¹]","[ML²T⁻²]"],a:0},
+      {s:"Physics",q:"A car starts from rest and accelerates at 2 m/s² for 5 s. Its final velocity is:",o:["5 m/s","10 m/s","15 m/s","20 m/s"],a:1},
+      {s:"Physics",q:"The area under a velocity-time graph gives:",o:["Acceleration","Displacement","Force","Power"],a:1},
+      {s:"Physics",q:"If net force on a body is zero, its acceleration is:",o:["Zero","Maximum","Negative","Infinite"],a:0},
+      {s:"Physics",q:"Momentum is equal to:",o:["m/v","mv","ma","mgh"],a:1},
+      {s:"Physics",q:"The SI unit of power is:",o:["Joule","Newton","Watt","Pascal"],a:2},
+      {s:"Physics",q:"Work done is zero when force is perpendicular to:",o:["Mass","Displacement","Time","Acceleration"],a:1},
+      {s:"Physics",q:"Friction generally acts:",o:["Along the motion","Opposite relative motion","Only upward","Only downward"],a:1},
+      {s:"Physics",q:"A freely falling body near Earth's surface has acceleration approximately:",o:["0.98 m/s²","9.8 m/s²","98 m/s²","980 m/s²"],a:1},
+      {s:"Physics",q:"The momentum of a stationary object is:",o:["1 kg m/s","Equal to its mass","Zero","Infinite"],a:2}
+    ]
+  },
+  biology: {
+    title:"Biology Chapter Test",
+    duration:10,
+    description:"10-question practice paper covering Cell Biology & Human Physiology.",
+    syllabus:{Biology:["Cell: Structure & Function","Human Physiology","Body Fluids & Circulation","Neural Control"]},
+    questions:[
+      {s:"Biology",q:"The plasma membrane is mainly composed of:",o:["Lipids and proteins","DNA and RNA","Cellulose only","Starch only"],a:0},
+      {s:"Biology",q:"Ribosomes are primarily involved in:",o:["Protein synthesis","Photosynthesis","DNA storage","Lipid digestion"],a:0},
+      {s:"Biology",q:"The normal pumping organ of the circulatory system is the:",o:["Lung","Kidney","Heart","Liver"],a:2},
+      {s:"Biology",q:"Haemoglobin is present mainly in:",o:["RBCs","WBCs","Platelets","Plasma only"],a:0},
+      {s:"Biology",q:"The functional unit of the nervous system is the:",o:["Nephron","Neuron","Alveolus","Osteon"],a:1},
+      {s:"Biology",q:"The hormone that lowers blood glucose is:",o:["Glucagon","Insulin","Adrenaline","Thyroxine"],a:1},
+      {s:"Biology",q:"Most oxygen in human blood is transported:",o:["Dissolved in plasma","Bound to haemoglobin","As bicarbonate only","Inside platelets"],a:1},
+      {s:"Biology",q:"The site of gas exchange in the lungs is the:",o:["Alveoli","Trachea","Nasal cavity","Diaphragm"],a:0},
+      {s:"Biology",q:"The powerhouse organelle of aerobic cells is the:",o:["Mitochondrion","Ribosome","Golgi body","Lysosome"],a:0},
+      {s:"Biology",q:"The brain and spinal cord together form the:",o:["Peripheral nervous system","Central nervous system","Autonomic system","Endocrine system"],a:1}
+    ]
+  }
+};
+
+let mockState = null;
+let mockTimer = null;
+
+function syllabusList(syl){
+  return Object.entries(syl).map(([sub,chs]) =>
+    `<div class="mock-syllabus-group"><strong>${sub}</strong><div>${chs.map(c=>`<span class="tag">${esc(c)}</span>`).join("")}</div></div>`
+  ).join("");
+}
+
+function mock(){
+  const results=JSON.parse(localStorage.getItem("neetMockResults")||"[]");
+  const resultHtml=results.slice(0,5).map(r=>`<div class="mock-result-row"><span>${esc(r.title)}</span><strong>${r.score}/${r.total}</strong><small>${new Date(r.date).toLocaleDateString()}</small></div>`).join("");
+  return simplePage("Mock Tests","Choose a paper, review its syllabus, and take the test with a live timer.",`
+    <div class="mock-grid">
+      ${Object.entries(mockTests).map(([id,t])=>`
+        <section class="card mock-card">
+          <div class="mock-badge">${id==="full"?"FULL MOCK":"CHAPTER TEST"}</div>
+          <h2>${t.title}</h2>
+          <p class="muted">${t.questions.length} questions · ${t.duration} minutes</p>
+          <p>${t.description}</p>
+          <div class="mock-syllabus"><h3>📚 Syllabus</h3>${syllabusList(t.syllabus)}</div>
+          <div class="mock-actions"><button class="btn primary" data-start-mock="${id}">Start test</button><button class="btn" data-view-syllabus="${id}">View syllabus</button></div>
+        </section>`).join("")}
+    </div>
+    <section class="card mock-rules">
+      <h2>How the mock test works</h2>
+      <div class="mock-rule-grid">
+        <div><b>1</b><span>Choose a paper</span></div>
+        <div><b>2</b><span>Answer questions</span></div>
+        <div><b>3</b><span>Submit before time ends</span></div>
+        <div><b>4</b><span>Get score + review</span></div>
+      </div>
+    </section>
+    ${resultHtml?`<section class="card"><h2>Recent results</h2><div class="mock-results">${resultHtml}</div></section>`:""}
+  `);
+}
+
+function mockTestPage(id){
+  const t=mockTests[id];
+  const answers=mockState?.answers||{};
+  const remaining=mockState?.remaining??t.duration*60;
+  const mm=String(Math.floor(remaining/60)).padStart(2,"0"), ss=String(remaining%60).padStart(2,"0");
+  const qHtml=t.questions.map((q,i)=>{
+    const selected=answers[i];
+    return `<article class="mock-question" id="q${i}">
+      <div class="question-top"><span class="tag">${q.s}</span><strong>Q${i+1}</strong></div>
+      <h3>${esc(q.q)}</h3>
+      <div class="options">${q.o.map((op,j)=>`<label class="${selected===j?"selected":""}"><input type="radio" name="q${i}" value="${j}" ${selected===j?"checked":""} data-answer="${i}"><span>${String.fromCharCode(65+j)}. ${esc(op)}</span></label>`).join("")}</div>
+    </article>`;
+  }).join("");
+  return simplePage(t.title,`${t.questions.length} questions · ${t.duration} minutes · ${t.description}`,`
+    <div class="mock-test-toolbar">
+      <button class="btn" id="backMocks">← Back to Mock Tests</button>
+      <div class="mock-live-timer">⏱ <strong id="mockClock">${mm}:${ss}</strong></div>
+      <button class="btn primary" id="submitMock">Submit test</button>
+    </div>
+    <div class="mock-test-layout">
+      <section class="mock-paper card">${qHtml}<button class="btn primary big-submit" id="submitMockBottom">Submit test</button></section>
+      <aside class="card mock-side-panel">
+        <h2>Paper syllabus</h2>${syllabusList(t.syllabus)}
+        <hr><h3>Question navigator</h3>
+        <div class="question-nav">${t.questions.map((_,i)=>`<button class="${answers[i]!==undefined?"answered":""}" data-jump="${i}">${i+1}</button>`).join("")}</div>
+        <p class="muted small">Answered questions are marked in the navigator.</p>
+      </aside>
+    </div>
+  `);
+}
+
+function finishMock(){
+  if(!mockState)return;
+  const t=mockTests[mockState.id];
+  clearInterval(mockTimer); mockTimer=null;
+  let score=0;
+  t.questions.forEach((q,i)=>{if(mockState.answers[i]===q.a)score++;});
+  const results=JSON.parse(localStorage.getItem("neetMockResults")||"[]");
+  results.unshift({title:t.title,score,total:t.questions.length,date:new Date().toISOString()});
+  localStorage.setItem("neetMockResults",JSON.stringify(results.slice(0,20)));
+  const breakdown=Object.entries(t.questions.reduce((a,q,i)=>{
+    a[q.s]??={correct:0,total:0};a[q.s].total++;if(mockState.answers[i]===q.a)a[q.s].correct++;return a;
+  },{})).map(([sub,v])=>`<div class="mock-breakdown-row"><span>${sub}</span><strong>${v.correct}/${v.total}</strong></div>`).join("");
+  document.querySelector("#main").innerHTML=pageShell("Test Result",t.title,`
+    <section class="card result-hero"><div class="result-score">${score}<small>/${t.questions.length}</small></div><h2>${score===t.questions.length?"Perfect score!":score>=t.questions.length*.7?"Strong attempt!":"Keep practicing — review the paper below."}</h2><p class="muted">Your result has been saved on this browser.</p></section>
+    <section class="card"><h2>Subject breakdown</h2>${breakdown}</section>
+    <section class="card"><h2>Question review</h2>${t.questions.map((q,i)=>{
+      const your=mockState.answers[i], ok=your===q.a;
+      return `<div class="review-item ${ok?"correct":"wrong"}"><strong>Q${i+1}. ${esc(q.q)}</strong><div>Your answer: ${your===undefined?"Not answered":esc(q.o[your])}</div><div>Correct answer: ${esc(q.o[q.a])}</div></div>`;
+    }).join("")}</section>
+    <button class="btn primary" id="backToMocks">Back to Mock Tests</button>
+  `);
+  mockState=null;
+  applyProfile();
+  document.querySelector("#backToMocks").onclick=()=>render("mock");
+}
+
+function startMock(id){
+  clearInterval(mockTimer);
+  const t=mockTests[id];
+  mockState={id,answers:{},remaining:t.duration*60};
+  render("mockRun");
+}
+
+function bindMockTest(){
+  if(!mockState)return;
+  const t=mockTests[mockState.id];
+  document.querySelectorAll("[data-answer]").forEach(inp=>inp.onchange=()=>{
+    mockState.answers[Number(inp.dataset.answer)]=Number(inp.value);
+    inp.closest("label").classList.add("selected");
+    const nav=document.querySelector(`[data-jump="${inp.dataset.answer}"]`);
+    if(nav)nav.classList.add("answered");
+  });
+  document.querySelectorAll("[data-jump]").forEach(b=>b.onclick=()=>document.querySelector("#q"+b.dataset.jump)?.scrollIntoView({behavior:"smooth",block:"start"}));
+  document.querySelector("#backMocks").onclick=()=>{clearInterval(mockTimer);mockState=null;render("mock")};
+  document.querySelector("#submitMock").onclick=finishMock;
+  document.querySelector("#submitMockBottom").onclick=finishMock;
+  mockTimer=setInterval(()=>{
+    if(!mockState)return;
+    mockState.remaining--;
+    const el=document.querySelector("#mockClock");
+    if(el){const m=String(Math.max(0,Math.floor(mockState.remaining/60))).padStart(2,"0"),s=String(Math.max(0,mockState.remaining%60)).padStart(2,"0");el.textContent=`${m}:${s}`;}
+    if(mockState.remaining<=0)finishMock();
+  },1000);
+}
+
+
+function aboutCreator(){
+  return simplePage("About the Creator","The student behind this NEET 2027 study dashboard.",`
+    <section class="creator-hero card">
+      <div class="creator-avatar">SP</div>
+      <div>
+        <div class="creator-kicker">CREATED BY</div>
+        <h2>Shreyash Patel</h2>
+        <p class="muted">NEET 2027 Aspirant · Uttar Pradesh, India</p>
+      </div>
+    </section>
+
+    <div class="creator-grid">
+      <section class="card">
+        <h2>👋 About Me</h2>
+        <p>Hi! I'm <strong>Shreyash Patel</strong>, a NEET aspirant from <strong>Uttar Pradesh</strong>, currently preparing for NEET 2027.</p>
+        <p>I am currently studying through <strong>PW Pathshala</strong> and built this dashboard to make my preparation more organized, consistent, and trackable.</p>
+      </section>
+
+      <section class="card">
+        <h2>🎯 Why I Built This</h2>
+        <p>This website brings together the things a NEET aspirant needs during preparation — syllabus tracking, study time, daily targets, reports, mock tests, and a study calendar.</p>
+        <p class="muted">The goal is simple: study consistently, track progress, and keep improving.</p>
+      </section>
+    </div>
+
+    <section class="card creator-note">
+      <div class="creator-note-icon">📚</div>
+      <div>
+        <h2>A Study Project by a Student</h2>
+        <p>This is a personal student project created by Shreyash Patel for NEET 2027 preparation. If you're using the dashboard too, I hope it helps you stay focused and consistent.</p>
+      </div>
+    </section>
+  `);
+}
+
+function todayKey(){return dateKey(new Date())}
+function calcStreak(){
+  let streak=0,d=new Date();
+  while(checkins[dateKey(d)]){streak++;d.setDate(d.getDate()-1)}
+  return streak;
+}
+function longestStreak(){
+  const keys=Object.keys(checkins).sort();let best=0,run=0,prev=null;
+  keys.forEach(k=>{const d=new Date(k+"T00:00:00");if(prev&&(d-prev)/86400000===1)run++;else run=1;best=Math.max(best,run);prev=d});
+  return best;
+}
+function esc(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function saveCheckin(){
+  const k=todayKey();
+  checkins[k]={mood:checkMood.value,target:checkTarget.value,studied:checkStudied.value.trim(),goal:checkGoal.value.trim(),difficulty:checkDifficulty.value.trim(),rating:checkRating.value};
+  localStorage.setItem("neetCheckins",JSON.stringify(checkins));render("community");
+}
+function addDiscussion(){
+  const t=discussionText.value.trim();if(!t)return;
+  discussions.unshift({type:discussionType.value,text:t,date:new Date().toISOString()});
+  localStorage.setItem("neetDiscussions",JSON.stringify(discussions));render("community");
+}
+function community(){
+  const c=checkins[todayKey()]||{},streak=calcStreak(),longest=longestStreak();
+  const posts=discussions.map(p=>`<article class="card discussion-post"><div class="post-head"><span class="tag">${esc(p.type)}</span><small class="muted">${new Date(p.date).toLocaleString()}</small></div><p>${esc(p.text)}</p></article>`).join("")||`<div class="empty">No discussions yet. Start the first one.</div>`;
+  return simplePage("Community","Check in daily, keep your streak alive, and discuss your NEET preparation.",`
+  <div class="identity-strip">
+  <div class="identity-avatar" id="communityAvatar">S</div>
+  <div><strong id="communityName">Student</strong><span>NEET 2027 Aspirant · Building consistency every day</span></div>
+  <div class="identity-chip">🎯 Focus Mode</div>
+</div>
+<div class="community-grid">
+    <section class="card checkin-card">
+      <div class="section-head"><div><h2>📝 Daily Check-in</h2><p class="muted">Record today's study plan and reflection.</p></div><div class="streak-badge">🔥 ${streak} day${streak===1?"":"s"}<small>current streak</small></div></div>
+      <div class="streak-stats"><div><b>${streak}</b><span>Current streak</span></div><div><b>${longest}</b><span>Longest streak</span></div><div><b>${Object.keys(checkins).length}</b><span>Check-ins</span></div></div>
+      <div class="form-grid">
+        <label>How are you feeling?<select id="checkMood"><option ${c.mood==="Great"?"selected":""}>Great</option><option ${c.mood==="Good"?"selected":""}>Good</option><option ${c.mood==="Okay"?"selected":""}>Okay</option><option ${c.mood==="Tired"?"selected":""}>Tired</option></select></label>
+        <label>Study target<select id="checkTarget"><option value="">Select</option><option ${c.target==="4 hours"?"selected":""}>4 hours</option><option ${c.target==="6 hours"?"selected":""}>6 hours</option><option ${c.target==="8 hours"?"selected":""}>8 hours</option><option ${c.target==="10+ hours"?"selected":""}>10+ hours</option></select></label>
+        <label>Hours actually studied<input id="checkStudied" value="${esc(c.studied)}" placeholder="e.g. 6.5 hours"></label>
+        <label>Daily rating<select id="checkRating"><option value="5" ${c.rating==="5"?"selected":""}>⭐⭐⭐⭐⭐</option><option value="4" ${c.rating==="4"?"selected":""}>⭐⭐⭐⭐</option><option value="3" ${c.rating==="3"?"selected":""}>⭐⭐⭐</option><option value="2" ${c.rating==="2"?"selected":""}>⭐⭐</option><option value="1" ${c.rating==="1"?"selected":""}>⭐</option></select></label>
+      </div>
+      <label>Main goal for today<input id="checkGoal" value="${esc(c.goal)}" placeholder="e.g. Complete Thermodynamics"></label>
+      <label>What was difficult today?<textarea id="checkDifficulty" placeholder="Write a short reflection...">${esc(c.difficulty)}</textarea></label>
+      <button class="btn primary" id="saveCheckin">Save today's check-in</button>
+    </section>
+    <section class="card discussion-card">
+      <div class="section-head"><div><h2>💬 Discussion</h2><p class="muted">Ask doubts, share tips, or post a study update.</p></div></div>
+      <div class="discussion-compose"><select id="discussionType"><option>Question</option><option>Study Update</option><option>Tip</option><option>Resource</option></select><textarea id="discussionText" placeholder="Write your question or study update..."></textarea><button class="btn green" id="postDiscussion">Post to discussion</button></div>
+      <div class="discussion-list">${posts}</div>
+    </section>
+  </div>`);
+}
 function fmt(sec){const h=String(Math.floor(sec/3600)).padStart(2,"0"),m=String(Math.floor(sec%3600/60)).padStart(2,"0"),s=String(sec%60).padStart(2,"0");return `${h}:${m}:${s}`}
 
 function applyTheme(theme){
@@ -262,12 +630,39 @@ function bindTheme(){
   };
 }
 
+
+let profile=JSON.parse(localStorage.getItem("neetProfile")||"null");
+function initials(name){return (name||"Student").trim().split(/\s+/).map(x=>x[0]).join("").slice(0,2).toUpperCase()}
+function applyProfile(){
+  const name=(profile?.name||"Student").trim();
+  const target=profile?.target||"8 hours";
+  document.querySelectorAll("#welcomeName").forEach(e=>e.textContent=name.toUpperCase());
+  const side=document.querySelector("#sideName"); if(side) side.textContent=name;
+  const brand=document.querySelector("#brandUser"); if(brand) brand.textContent=name+"'s Study Hub";
+  const cn=document.querySelector("#communityName"); if(cn) cn.textContent=name;
+  ["#sideAvatar","#communityAvatar",".hero-avatar"].forEach(sel=>document.querySelectorAll(sel).forEach(e=>e.textContent=initials(name)));
+  const input=document.querySelector("#profileNameInput"); if(input) input.value=name==="Student"?"":name;
+  const targetInput=document.querySelector("#profileTargetInput"); if(targetInput) targetInput.value=target;
+}
+function showProfileSetup(){
+  const modal=document.querySelector("#profileSetup"); if(modal) modal.style.display="grid";
+}
+function saveProfileSetup(){
+  const name=document.querySelector("#profileNameInput").value.trim();
+  if(!name){document.querySelector("#profileNameInput").focus();return}
+  profile={name,target:document.querySelector("#profileTargetInput").value};
+  localStorage.setItem("neetProfile",JSON.stringify(profile));
+  document.querySelector("#profileSetup").style.display="none";
+  applyProfile(); render("dashboard");
+}
+
 function render(page="dashboard"){
   document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
-  const pages={dashboard,syllabus,timer:timerPage,leaderboard,calendar,reports,mock,community};
+  const pages={dashboard,syllabus,timer:timerPage,leaderboard,calendar,reports,mock,mockRun:()=>mockTestPage(mockState?.id||"full"),community,aboutCreator};
   document.querySelector("#main").innerHTML=pages[page]();
   bind(page);
   bindTheme();
+  applyProfile();
 }
 function bind(page){
   if(page==="dashboard") startCountdown();
@@ -297,6 +692,18 @@ function bind(page){
       saveTargets(); render("calendar");
     });
   }
+  if(page==="community"){
+    if(document.querySelector("#saveCheckin")) document.querySelector("#saveCheckin").onclick=saveCheckin;
+    if(document.querySelector("#postDiscussion")) document.querySelector("#postDiscussion").onclick=addDiscussion;
+  }
+  if(page==="mock"){
+    document.querySelectorAll("[data-start-mock]").forEach(b=>b.onclick=()=>startMock(b.dataset.startMock));
+    document.querySelectorAll("[data-view-syllabus]").forEach(b=>b.onclick=()=>{
+      const t=mockTests[b.dataset.viewSyllabus];
+      alert(Object.entries(t.syllabus).map(([s,chs])=>s+"\n• "+chs.join("\n• ")).join("\n\n"));
+    });
+  }
+  if(page==="mockRun") bindMockTest();
   if(page==="timer"){
     document.querySelector("#start").onclick=()=>{running=!running;if(running){interval=setInterval(()=>{timer++;document.querySelector("#clock").textContent=fmt(timer)},1000)}else clearInterval(interval);document.querySelector("#start").textContent=running?"Pause":"Start"};
     document.querySelector("#save").onclick=()=>{if(timer){sessions.push({subject:currentSubject,seconds:timer,date:new Date().toISOString()});localStorage.setItem("neetSessions",JSON.stringify(sessions));timer=0;running=false;clearInterval(interval);render("timer")}};
@@ -310,6 +717,9 @@ function startCountdown(){
  const tick=()=>{let d=Math.max(0,target-Date.now()),days=Math.floor(d/86400000);d%=86400000;let h=Math.floor(d/3600000);d%=3600000;let m=Math.floor(d/60000);let s=Math.floor(d/1000)%60;el.innerHTML=`<div><strong>${days}</strong><small>days</small></div><div><strong>${h}</strong><small>hrs</small></div><div><strong>${m}</strong><small>min</small></div><div><strong>${s}</strong><small>sec</small></div>`};tick();setInterval(tick,1000)
 }
 render();
+if(!profile) setTimeout(showProfileSetup,250);
+const saveProfileBtn=document.querySelector("#saveProfile");
+if(saveProfileBtn) saveProfileBtn.onclick=saveProfileSetup;
 
 </script>
 </body>
