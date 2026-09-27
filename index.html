@@ -106,7 +106,7 @@ body.light .theme-toggle button{background:#fff;border-color:#dfe4ea;color:#4653
 body.light .streak-stats div{background:#fff;border-color:#dfe4ea}body.light .card input,body.light .card select,body.light .card textarea{background:#fff;color:#17202b;border-color:#d5dbe3}body.light .discussion-compose{border-color:#dfe4ea}
 @media(max-width:900px){.community-grid{grid-template-columns:1fr}}@media(max-width:560px){.form-grid{grid-template-columns:1fr}.streak-stats{grid-template-columns:1fr}}
 
-.brand-wrap{display:flex;align-items:center;gap:10px;margin-bottom:22px}.brand-wrap .brand{margin:0}.brand-user{font-size:10px;color:#778396;margin-top:2px}.brand-logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#5b8def,#7d5bea);color:#fff;font-weight:900;box-shadow:0 8px 20px rgba(91,141,239,.2)}
+.brand-wrap{display:flex;align-items:center;gap:10px;margin-bottom:22px}.brand-wrap .brand{margin:0}.brand-user{font-size:10px;color:#778396;margin-top:2px}.brand-logo{width:40px;height:40px;flex:none;display:block;object-fit:cover;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.24)}
 .sidebar-profile{display:flex;align-items:center;gap:10px;margin:20px 4px 0;padding:12px;border:1px solid #292e35;background:#111419;border-radius:12px}.profile-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#5b8def;color:#fff;font-weight:900}.sidebar-profile strong{display:block;font-size:13px}.sidebar-profile span{display:block;color:#7f8a9c;font-size:10px;margin-top:2px}
 .google-auth-button{width:calc(100% - 8px);margin:10px 4px 0;padding:11px 10px;border:1px solid #5b8def;border-radius:9px;background:#18243a;color:#eaf1ff;font:600 13px Inter,ui-sans-serif,system-ui,sans-serif;cursor:pointer}.google-auth-button:hover{background:#223455}.google-auth-button:disabled{opacity:.65;cursor:wait}.google-auth-status{margin:6px 8px 0;color:#8e9ab0;font-size:10px;line-height:1.4;overflow-wrap:anywhere}body.light .google-auth-button{background:#edf3ff;color:#244d91;border-color:#9ab7ed}body.light .google-auth-status{color:#65738a}
 .privacy-link{display:block;margin:14px 8px 0;color:#8e9ab0;font-size:11px;text-align:center;text-decoration:none}.privacy-link:hover{text-decoration:underline}body.light .privacy-link{color:#65738a}
@@ -289,7 +289,7 @@ body.intro-active .mobile-bottom-nav,body.intro-active .mobile-more-panel{displa
 .launch-stage:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.17;background-image:radial-gradient(#b9ffe0 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent)}
 .launch-glow{position:absolute;width:min(80vw,760px);aspect-ratio:1;border-radius:50%;left:50%;top:52%;transform:translate(-50%,-50%) scale(calc(.4 + var(--launch-progress,0)*1.1));background:radial-gradient(circle,#6affa933 0,#42e8a30c 42%,transparent 70%);filter:blur(8px);pointer-events:none}
 .launch-header{position:absolute;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:clamp(16px,4vw,34px) clamp(16px,5vw,52px);z-index:3;font-size:12px;font-weight:800;letter-spacing:.08em}
-.launch-brand{display:flex;align-items:center;gap:10px}.launch-logo{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,#54e4ab,#5489ff);color:#08110f;font-size:15px}
+.launch-brand{display:flex;align-items:center;gap:10px}.launch-logo{width:36px;height:36px;display:block;flex:none;object-fit:cover;border-radius:10px}
 .launch-skip{padding:8px 11px;border:1px solid #ffffff35;border-radius:999px;background:#ffffff0b;color:#edf8f1;font:inherit;font-size:10px;letter-spacing:0;cursor:pointer}
 .launch-scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:70px 22px;opacity:var(--launch-scene-opacity,0);transform:scale(calc(.9 + var(--launch-progress,0)*.1));z-index:1}
 .launch-kicker{margin:0 0 12px;color:#64edbd;font-size:11px;font-weight:800;letter-spacing:.19em;text-transform:uppercase}
@@ -305,7 +305,7 @@ body.intro-active .mobile-bottom-nav,body.intro-active .mobile-more-panel{displa
 .launch-student-name{display:block;font-size:clamp(17px,3vw,23px);font-weight:800;overflow-wrap:anywhere}.launch-student-caption{display:block;margin-top:3px;color:#aab8b0;font-size:11px}
 .launch-hours{grid-column:1/-1;display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding-top:12px;border-top:1px solid #ffffff20}.launch-hours strong{color:#64edbd;font-size:clamp(24px,5vw,36px);letter-spacing:-.04em}.launch-hours span{color:#afbeb5;font-size:12px}
 .launch-app-start{height:1px;scroll-margin-top:0}
-@media(max-width:600px){.launch-stage{min-height:520px}.launch-header{padding:14px}.launch-brand{font-size:10px;gap:7px}.launch-logo{width:29px;height:29px}.launch-skip{font-size:9px;padding:7px 9px}.launch-word{font-size:clamp(112px,29vw,190px);letter-spacing:-.13em}.launch-word[data-launch-word="student"]{font-size:clamp(85px,20vw,142px)}.launch-controls{bottom:112px;gap:2px}.launch-controls-label{font-size:9px;padding:0 3px}.launch-focus{width:28px;height:28px}.launch-hint{bottom:69px;font-size:8px}.launch-scene{padding:60px 18px}.launch-scene h1{font-size:clamp(38px,10vw,58px)}.launch-scene p{font-size:13px;margin-top:12px}.launch-student-card{margin-top:16px;padding:13px;gap:9px}.launch-student-avatar{width:40px;height:40px;font-size:15px}.launch-student-caption{font-size:10px}.launch-hours{padding-top:9px}}
+@media(max-width:600px){.launch-stage{min-height:520px}.launch-header{padding:14px}.launch-brand{font-size:10px;gap:7px}.launch-logo{width:32px;height:32px}.launch-skip{font-size:9px;padding:7px 9px}.launch-word{font-size:clamp(112px,29vw,190px);letter-spacing:-.13em}.launch-word[data-launch-word="student"]{font-size:clamp(85px,20vw,142px)}.launch-controls{bottom:112px;gap:2px}.launch-controls-label{font-size:9px;padding:0 3px}.launch-focus{width:28px;height:28px}.launch-hint{bottom:69px;font-size:8px}.launch-scene{padding:60px 18px}.launch-scene h1{font-size:clamp(38px,10vw,58px)}.launch-scene p{font-size:13px;margin-top:12px}.launch-student-card{margin-top:16px;padding:13px;gap:9px}.launch-student-avatar{width:40px;height:40px;font-size:15px}.launch-student-caption{font-size:10px}.launch-hours{padding-top:9px}}
 </style>
 
 <style id="forest-dashboard-theme">
@@ -313,7 +313,7 @@ body.intro-active .mobile-bottom-nav,body.intro-active .mobile-more-panel{displa
 body:not(.light){background:#08110f;color:#f3f7f4}
 body:not(.light) .app{background:#08110f;color:#f3f7f4}
 body:not(.light) .sidebar{background:#0c1e18;border-color:#243a30}
-body:not(.light) .brand-logo{background:linear-gradient(135deg,#54e4ab,#64edbd);color:#08110f}
+body:not(.light) .brand-logo{box-shadow:0 8px 20px rgba(0,0,0,.32)}
 body:not(.light) .nav-item{color:#aab8b0}
 body:not(.light) .nav-item span{color:#90aa9b}
 body:not(.light) .nav-item:hover{background:#12291f;color:#f3f7f4}
@@ -373,6 +373,7 @@ body:not(.light) .app{
 body:not(.light) .sidebar{background:rgba(12,30,24,.62)}
 body:not(.light) main{background:transparent}
 </style>
+<link rel="icon" type="image/png" href="shreyash-study-hub-logo.png">
 </head>
 <body class="intro-active">
 <div id="profileSetup" class="profile-setup" style="display:none">
@@ -390,7 +391,7 @@ body:not(.light) main{background:transparent}
   <div id="launchExperience" class="launch-experience" aria-label="Welcome to the NEET study portal">
   <section class="launch-runway" data-launch-runway="portal" aria-label="NEET study portal">
     <div class="launch-stage" data-launch-stage><div class="launch-glow" aria-hidden="true"></div>
-      <header class="launch-header"><span class="launch-brand"><span class="launch-logo">N</span>NEET 2027 · STUDY HUB</span><button class="launch-skip" type="button" data-launch-skip>Skip intro ↓</button></header>
+      <header class="launch-header"><span class="launch-brand"><img class="launch-logo" src="shreyash-study-hub-logo.png" alt="">NEET 2027 · STUDY HUB</span><button class="launch-skip" type="button" data-launch-skip>Skip intro ↓</button></header>
       <div class="launch-scene" aria-hidden="true"><p class="launch-kicker">Your preparation, in focus</p><h1>Welcome to your<br>NEET study portal.</h1><p>A focused space to plan, practice, and keep moving toward your goal.</p></div>
       <div class="launch-word" data-launch-word="neet" aria-hidden="true"><span data-launch-letter="0">N</span><span data-launch-letter="1">E</span><span data-launch-letter="2">E</span><span data-launch-letter="3">T</span></div>
       <div class="launch-controls" aria-label="Choose a letter to focus on"><span class="launch-controls-label">Focus through</span><button class="launch-focus" type="button" data-launch-focus="0" aria-label="Focus through N" aria-pressed="false">N</button><button class="launch-focus" type="button" data-launch-focus="1" aria-label="Focus through first E" aria-pressed="false">E</button><button class="launch-focus" type="button" data-launch-focus="2" aria-label="Focus through second E" aria-pressed="false">E</button><button class="launch-focus" type="button" data-launch-focus="3" aria-label="Focus through T" aria-pressed="false">T</button></div>
@@ -399,7 +400,7 @@ body:not(.light) main{background:transparent}
   </section>
   <section class="launch-runway" data-launch-runway="student" aria-label="Your study progress">
     <div class="launch-stage" data-launch-stage><div class="launch-glow" aria-hidden="true"></div>
-      <header class="launch-header"><span class="launch-brand"><span class="launch-logo">N</span>YOUR STUDY JOURNEY</span><button class="launch-skip" type="button" data-launch-skip>Skip intro ↓</button></header>
+      <header class="launch-header"><span class="launch-brand"><img class="launch-logo" src="shreyash-study-hub-logo.png" alt="">YOUR STUDY JOURNEY</span><button class="launch-skip" type="button" data-launch-skip>Skip intro ↓</button></header>
       <div class="launch-scene" aria-hidden="true"><p class="launch-kicker">One focused hour at a time</p><h1>Keep building your<br>momentum.</h1><div class="launch-student-card"><div class="launch-student-avatar" id="launchStudentAvatar">S</div><div><span class="launch-student-name" id="launchStudentName">Student</span><span class="launch-student-caption">Your study journey</span></div><div class="launch-hours"><strong id="launchStudentHours">0.0 h</strong><span>saved study time</span></div></div></div>
       <div class="launch-word" data-launch-word="student" aria-hidden="true"><span data-launch-letter>STUDY</span></div>
       <div class="launch-hint">Scroll to open your dashboard ↓</div>
@@ -409,7 +410,7 @@ body:not(.light) main{background:transparent}
   <div class="app">
     <aside class="sidebar">
     <div class="brand-wrap">
-      <div class="brand-logo">S</div>
+      <img class="brand-logo" src="shreyash-study-hub-logo.png" alt="Shreyash Study Hub">
       <div><div class="brand">NEET 2027</div><div class="brand-user" id="brandUser">My Study Hub</div></div>
     </div>
       <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-expanded="false" aria-controls="siteNavigation" aria-label="Open menu">☰</button>
