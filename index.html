@@ -310,6 +310,12 @@ body.intro-active .mobile-bottom-nav,body.intro-active .mobile-more-panel{displa
 @media(max-width:600px){.launch-stage{min-height:520px}.launch-header{padding:14px}.launch-brand{font-size:10px;gap:7px}.launch-logo{width:32px;height:32px}.launch-skip{font-size:9px;padding:7px 9px}.launch-word{font-size:clamp(112px,29vw,190px);letter-spacing:-.13em}.launch-word[data-launch-word="student"]{font-size:clamp(85px,20vw,142px)}.launch-controls{bottom:112px;gap:2px}.launch-controls-label{font-size:9px;padding:0 3px}.launch-focus{width:28px;height:28px}.launch-meaning{width:min(240px,calc(100% - 46px));padding:20px 23px;font-size:12px}.launch-meaning:before{width:68px;height:58px;left:18px;top:-23px}.launch-meaning:after{width:76px;height:62px;right:20px;top:-26px}.launch-hint{bottom:69px;font-size:8px}.launch-scene{padding:60px 18px}.launch-scene h1{font-size:clamp(38px,10vw,58px)}.launch-scene p{font-size:13px;margin-top:12px}.launch-student-card{margin-top:16px;padding:13px;gap:9px}.launch-student-avatar{width:40px;height:40px;font-size:15px}.launch-student-caption{font-size:10px}.launch-hours{padding-top:9px}}
 </style>
 
+<style id="study-music-styles">
+.study-music{margin-top:18px;padding:18px;border:1px solid #24483a;border-radius:12px;background:linear-gradient(140deg,#10271f,#0d1713)}.music-heading{font-size:16px;font-weight:800}.music-now{margin-top:4px;color:#aab8b0;font-size:12px}.music-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:15px}.music-option{min-height:64px;padding:10px;border:1px solid #294237;border-radius:10px;background:#0b1914;color:#e8f4ed;text-align:left;font:inherit;cursor:pointer}.music-option strong,.music-option small{display:block}.music-option strong{font-size:12px}.music-option small{margin-top:4px;color:#9bb1a5;font-size:10px}.music-option.active{border-color:#45dfa6;background:#123628;box-shadow:0 0 0 1px #45dfa644 inset}.music-actions{display:flex;align-items:center;gap:14px;margin-top:14px}.music-actions .btn{padding:10px 15px;font-size:13px}.music-volume{display:flex;align-items:center;gap:8px;color:#aab8b0;font-size:12px}.music-volume input{width:112px;accent-color:#45dfa6}.music-note{margin:12px 0 0;color:#83998e;font-size:11px;line-height:1.5}@media(max-width:600px){.music-options{grid-template-columns:1fr}.music-option{min-height:52px}.music-actions{flex-wrap:wrap}}
+</style>
+<style id="study-music-volume-fix">
+.music-volume input{width:150px;height:22px;margin:0;accent-color:#45dfa6;cursor:pointer}.music-volume output{min-width:34px;color:#e8f4ed;font-variant-numeric:tabular-nums}
+</style>
 <style id="forest-dashboard-theme">
 /* Match the dashboard, cards, and navigation to the launch-screen forest palette. */
 body:not(.light){background:#08110f;color:#f3f7f4}
@@ -463,6 +469,10 @@ body:not(.light) main{background:transparent}
       <button type="button" id="mobileThemeToggle"><span>☀</span><span id="mobileThemeLabel">Light mode</span></button>
       <a href="privacy.html"><span>♡</span>Privacy Policy</a>
     </div>
+    <audio id="studyMixAudio" src="study-mix.mp3" preload="metadata" loop></audio>
+    <audio id="practiceMixAudio" src="practice-mix.mp3" preload="metadata" loop></audio>
+    <audio id="restMixOneAudio" src="rest-mix-1.mp3" preload="metadata" loop></audio>
+    <audio id="restMixTwoAudio" src="rest-mix-2.mp3" preload="metadata" loop></audio>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
@@ -474,6 +484,8 @@ const subjects = {
 };
 const colors={Physics:"#5b8def",Chemistry:"#b37bea",Botany:"#49bd79",Zoology:"#f0a553"};
 let currentSubject="Physics", timer=0, running=false, interval=null;
+let studyMusicMode="focus",studyMusicVolume=.35,studyMusicPlaying=false;
+const studyMusicPresets={focus:{title:"Stellar Fission · Study Mix",description:"Your Oppenheimer × Interstellar mix.",audio:"studyMixAudio"},practice:{title:"AURA · Practice Mix",description:"Brazilian phonk and funk for practice sessions.",audio:"practiceMixAudio"},rest1:{title:"Haryanvi Bangers · Rest Mix 1",description:"Your Haryanvi playlist for a lively break.",audio:"restMixOneAudio"},rest2:{title:"Dance Songs · Rest Mix 2",description:"Your dance playlist for a lively break.",audio:"restMixTwoAudio"}};
 let checked=JSON.parse(localStorage.getItem("neetChecked")||"{}");
 let checkedSubtopics=JSON.parse(localStorage.getItem("neetSubtopics")||"{}");
 let expandedSyllabusChapters=JSON.parse(localStorage.getItem("neetExpandedChapters")||"{}");
@@ -482,6 +494,10 @@ let checkins=JSON.parse(localStorage.getItem("neetCheckins")||"{}");
 let discussions=JSON.parse(localStorage.getItem("neetDiscussions")||"[]");
 
 function pageShell(title,sub,body){return `<h1>${title}</h1><div class="subtitle">${sub}</div>${body}`}
+function stopStudyMusic(){Object.values(studyMusicPresets).forEach(preset=>document.getElementById(preset.audio)?.pause());studyMusicPlaying=false;updateStudyMusicUI()}
+function updateStudyMusicUI(){const preset=studyMusicPresets[studyMusicMode],play=document.querySelector("#studyMusicToggle"),now=document.querySelector("#studyMusicNow"),description=document.querySelector("#studyMusicDescription"),volume=document.querySelector("#studyMusicVolume"),volumeValue=document.querySelector("#studyMusicVolumeValue"),percent=Math.round(studyMusicVolume*100);document.querySelectorAll("[data-study-music-mode]").forEach(button=>button.classList.toggle("active",button.dataset.studyMusicMode===studyMusicMode));if(play)play.textContent=studyMusicPlaying?"❚❚ Pause music":"▶ Play music";if(now)now.textContent=`${preset.title} · ${studyMusicPlaying?"Playing":"Ready"}`;if(description)description.textContent=preset.description;if(volume)volume.value=String(percent);if(volumeValue)volumeValue.textContent=`${percent}%`}
+function startStudyMusic(){const preset=studyMusicPresets[studyMusicMode],track=document.getElementById(preset.audio);if(!track)return;track.volume=studyMusicVolume;track.play().then(()=>{studyMusicPlaying=true;updateStudyMusicUI()}).catch(()=>{studyMusicPlaying=false;const description=document.querySelector("#studyMusicDescription");updateStudyMusicUI();if(description)description.textContent=`Could not load ${track.getAttribute("src")}. Keep it beside index.html and try again.`})}
+function setStudyMusicMode(mode){if(!studyMusicPresets[mode])return;const resume=studyMusicPlaying;if(resume)stopStudyMusic();studyMusicMode=mode;updateStudyMusicUI();if(resume)startStudyMusic()}
 function dashboard(){
   const totalDone=Object.values(checked).filter(Boolean).length;
   const total=Object.values(subjects).reduce((a,b)=>a+b.length,0);
@@ -602,7 +618,8 @@ function timerPage(){
   return pageShell("Study Timer","Pick a subject and track how long you study it.",`
   <section class="card timer-card"><div class="tabs">${Object.keys(subjects).map(s=>`<button class="tab ${s===currentSubject?"active":""}" data-timersubject="${s}">${s}</button>`).join("")}</div>
   <div class="clock" id="clock">${fmt(timer)}</div>
-  <div class="actions"><button class="btn primary" id="start">${running?"Pause":"Start"}</button><button class="btn green" id="save">Save session</button><button class="btn" id="discard">Discard</button></div></section>`);
+  <div class="actions"><button class="btn primary" id="start">${running?"Pause":"Start"}</button><button class="btn green" id="save">Save session</button><button class="btn" id="discard">Discard</button></div>
+  <section class="study-music"><div class="music-heading">Study music</div><div class="music-now" id="studyMusicNow"></div><div class="music-options" role="group" aria-label="Choose music for your study mode"><button class="music-option" type="button" data-study-music-mode="focus"><strong>Stellar Fission Mix</strong><small>Oppenheimer × Interstellar</small></button><button class="music-option" type="button" data-study-music-mode="practice"><strong>AURA Phonk Mix</strong><small>Brazilian phonk &amp; funk</small></button><button class="music-option" type="button" data-study-music-mode="rest1"><strong>Haryanvi Break Mix</strong><small>Rest option 1</small></button><button class="music-option" type="button" data-study-music-mode="rest2"><strong>Dance Break Mix</strong><small>Rest option 2</small></button></div><div class="music-actions"><button type="button" class="btn green" id="studyMusicToggle">▶ Play music</button><label class="music-volume">Volume <input id="studyMusicVolume" type="range" min="0" max="100" value="35"><output id="studyMusicVolumeValue" for="studyMusicVolume">35%</output></label></div><p class="music-note" id="studyMusicDescription"></p><p class="music-note">All four options play your supplied MP3s. They loop until paused or you leave the Study Timer.</p></section></section>`);
 }
 function reports(){
   return pageShell("Reports","How your study time splits across subjects.",`
@@ -1429,6 +1446,7 @@ function bindLaunchExperience(){
 }
 function render(page="dashboard"){
   if(portalCleanup){portalCleanup();portalCleanup=null}
+  if(page!=="timer"&&studyMusicPlaying)stopStudyMusic();
   activePage=page;
   document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
   const primaryPages=["dashboard","practice","timer","syllabus"];
@@ -1509,6 +1527,10 @@ function bind(page){
   }
   if(page==="mockRun") bindMockTest();
   if(page==="timer"){
+    document.querySelectorAll("[data-study-music-mode]").forEach(button=>button.onclick=()=>setStudyMusicMode(button.dataset.studyMusicMode));
+    document.querySelector("#studyMusicToggle").onclick=()=>studyMusicPlaying?stopStudyMusic():startStudyMusic();
+    document.querySelector("#studyMusicVolume").oninput=event=>{const slider=event.currentTarget;studyMusicVolume=Number(slider.value)/Number(slider.max);const volumeValue=document.querySelector("#studyMusicVolumeValue");if(volumeValue)volumeValue.textContent=`${slider.value}%`;Object.values(studyMusicPresets).forEach(preset=>{const track=document.getElementById(preset.audio);if(track)track.volume=studyMusicVolume})};
+    updateStudyMusicUI();
     document.querySelector("#start").onclick=()=>{running=!running;if(running){interval=setInterval(()=>{timer++;document.querySelector("#clock").textContent=fmt(timer)},1000)}else clearInterval(interval);document.querySelector("#start").textContent=running?"Pause":"Start"};
     document.querySelector("#save").onclick=()=>{if(timer){const savedSeconds=timer;sessions.push({subject:currentSubject,seconds:savedSeconds,date:new Date().toISOString()});localStorage.setItem("neetSessions",JSON.stringify(sessions));timer=0;running=false;clearInterval(interval);render("timer");publishSavedStudySession(savedSeconds)}};
     document.querySelector("#discard").onclick=()=>{timer=0;running=false;clearInterval(interval);render("timer")};
